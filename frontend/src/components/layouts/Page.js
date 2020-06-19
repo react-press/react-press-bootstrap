@@ -12,23 +12,10 @@ class Home extends React.Component {
     <React.Fragment>
       <Helmet>
           <meta charSet="utf-8" />
-          <title>Home</title>
+          <title>Page</title>
           <link rel="canonical" href="http://mysite.com/example" />
         </Helmet>
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header> 
+        <h1>Page</h1>
       </React.Fragment>   
       );
     }

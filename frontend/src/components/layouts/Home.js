@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import {Helmet} from "react-helmet";
-import logo from '../assets/img/logo.svg';
-import '../assets/sass/App.scss';
+import logo from '../../assets/img/logo.svg';
+import '../../assets/sass/App.scss';
 
 
-class Page extends React.Component {
+class Home extends React.Component {
       render() { 
         return (  
         <>     
@@ -32,4 +32,4 @@ class Page extends React.Component {
     }
     }
  
-export default Page;
+export default Home;

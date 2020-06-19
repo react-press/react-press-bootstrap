@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import {Helmet} from "react-helmet";
 import logo from '../../assets/img/logo.svg';
-import '../../assets/sass/App.scss';
+import '../../assets/sass/__main.scss';
 
 
 class Home extends React.Component {

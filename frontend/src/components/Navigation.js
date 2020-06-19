@@ -4,7 +4,7 @@ import {Navbar, Nav, NavDropdown} from 'react-bootstrap';
 class Navigation extends React.Component {
   render() { 
       return (
-          <Navbar bg="light" expand="lg">
+          <Navbar className="yoh-nav" bg="light" expand="lg">
             <Navbar.Brand href="/">Yoh React</Navbar.Brand>
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav">

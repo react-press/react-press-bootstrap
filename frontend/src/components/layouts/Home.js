@@ -1,6 +1,6 @@
 import React from 'react';
 import {Helmet} from "react-helmet";
-import logo from '../../assets/img/logo.svg';
+import logo from '../../assets/img/yoh-logo.png';
 
 
 class Home extends React.Component {
@@ -16,17 +16,9 @@ class Home extends React.Component {
         </Helmet>
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
+          <p className="pt-3">
+            Coming Soon...
           </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
         </header> 
       </React.Fragment>   
       );

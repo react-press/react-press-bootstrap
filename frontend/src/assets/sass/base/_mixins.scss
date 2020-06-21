@@ -37,12 +37,3 @@
         @content;
     }
 }
-
-@mixin hover-zoom() {
-transition: all 1.0s;
-position: relative;
-z-index: 1;
-&:focus, &:active, &:hover {
-    transform: scale(1.03);
-}
-}

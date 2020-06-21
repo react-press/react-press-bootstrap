@@ -36,12 +36,12 @@ the main stylesheet that is loaded into the index.js file right after the bootst
 <h3>Mixins</h3>
 the mixins are located in src/assets/sass/globals/. Currently there a 4 main break point mixins.
 <br/>
-* @include xsmall-screen {}
+* @include xsmall-screen { min-width: 640px }
 <br/>
-* @include small-screen {}
+* @include small-screen { min-width: 768px }
 <br/>
-* @include medium-screen {}
+* @include medium-screen { min-width: 992px;}
 <br/>
-* @include large-screen {}
+* @include large-screen { min-width: 1200px }
 
 

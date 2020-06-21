@@ -8,6 +8,29 @@
   <li><a href="https://www.npmjs.com/package/react-router-dom">react-router-dom</a></li>
    <li><a href="https://getbootstrap.com/docs/4.4/getting-started/theming/"> bootstrap-custom-theme</a></li>
  </ul>
-<br/>
+ <br/>
  NOTE: <a href="https://reactjs.org/blog/2019/08/08/react-v16.9.0.html#renaming-unsafe-lifecycle-methods">react-codemod for Lifecycle Methods</a>
+ 
+# Sass Structure
+<ul><br/>
+  <li>src/assets/sass</li>
+    <ul>
+      <li>base</li>
+      <li>components</li>
+      <li>layouts</li>
+      <li>main.scss</li>
+    </ul>
+ </ul>
+
+<h3>Base Styles</h3>
+this directory is where the bootstrap overides are, the style variables, mixins, and global styles for the site
+<br/>
+<h3>Components</h3>
+this directory is where the individual component styles are located
+<br/>
+<h3>Layouts</h3>
+this directory is where the different page layout styles are located
+<br/>
+<h3>main.scss</h3>
+the main stylesheet that is loaded into the index.js file right after the bootstrap stylesheet
 

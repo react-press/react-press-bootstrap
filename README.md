@@ -33,4 +33,11 @@ this directory is where the different page layout styles are located
 <br/>
 <h3>main.scss</h3>
 the main stylesheet that is loaded into the index.js file right after the bootstrap stylesheet
+<h3>Mixins</h3>
+the mixins are located in src/assets/sass/globals/. Currently there a 4 main break point mixins.
+* @include xsmall-screen {}
+* @include small-screen {}
+* @include medium-screen {}
+* @include large-screen {}
+
 

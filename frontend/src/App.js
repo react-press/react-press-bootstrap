@@ -14,7 +14,7 @@ export default function yohReact() {
         <Switch>
           <Route exact path="/" component={Home}/>
           <Route exact path="/page" component={Page}/>
-          <Route exact path="/page" component={Contact}/>
+          <Route exact path="/contact" component={Contact}/>
         </Switch>
       </Router>
     </React.Fragment>

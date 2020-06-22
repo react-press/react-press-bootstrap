@@ -3,12 +3,8 @@ import {Helmet} from "react-helmet";
 import logo from '../../assets/img/yoh-logo.png';
 
 
-class Home extends React.Component {
-
-  render() { 
-
-    return (  
-    <React.Fragment>
+const Home = () => (
+  <React.Fragment>
       <Helmet>
           <meta charSet="utf-8" />
           <title>Home</title>
@@ -20,9 +16,7 @@ class Home extends React.Component {
             Coming Soon...
           </p>
         </header> 
-      </React.Fragment>   
-      );
-    }
-}
+    </React.Fragment>
+); 
  
 export default Home;

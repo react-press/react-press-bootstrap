@@ -1,9 +1,8 @@
 import React from 'react';
 import { Container, Navbar, Nav } from 'react-bootstrap';
 
-class Navigation extends React.Component {
-  render() { 
-      return (
+
+const Navigation = () => (
             <Navbar className="yoh-nav" expand="lg" variant="light" bg="light">
               <Container>
               <Navbar.Brand href="/">Yoh React</Navbar.Brand>
@@ -12,13 +11,10 @@ class Navigation extends React.Component {
                 <Nav className="ml-auto">
                     <Nav.Link href="/">Home</Nav.Link>
                     <Nav.Link href="/page">Page</Nav.Link>
-                    <Nav.Link href="/contact">Contact</Nav.Link>
                 </Nav>
               </Navbar.Collapse>
               </Container>
             </Navbar>
         );
-    }
-}
 
 export default Navigation;

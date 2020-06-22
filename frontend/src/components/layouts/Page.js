@@ -3,11 +3,7 @@ import { Helmet } from "react-helmet";
 import { Button }from 'react-bootstrap';
 
 
-class Home extends React.Component {
-
-  render() { 
-
-    return (  
+const Page = () => (
     <React.Fragment>
       <Helmet>
           <meta charSet="utf-8" />
@@ -17,8 +13,6 @@ class Home extends React.Component {
         <h1>Page</h1>
         <Button variant="primary">Primary</Button>{' '}
       </React.Fragment>   
-      );
-    }
-}
- 
-export default Home;
+);
+
+export default Page;

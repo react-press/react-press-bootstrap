@@ -3,9 +3,9 @@ import { Container, Navbar, Nav } from 'react-bootstrap';
 
 
 const Navigation = () => (
-            <Navbar className="yoh-nav" expand="lg" variant="light" bg="light">
+            <Navbar className="rp-nav" expand="lg" variant="light" bg="light">
               <Container>
-              <Navbar.Brand href="/">Yoh React</Navbar.Brand>
+              <Navbar.Brand href="/">react-press</Navbar.Brand>
               <Navbar.Toggle aria-controls="basic-navbar-nav" />
               <Navbar.Collapse id="basic-navbar-nav">
                 <Nav className="ml-auto">

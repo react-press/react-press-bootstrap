@@ -1,25 +1,17 @@
 import React from 'react';
 import { Helmet } from "react-helmet";
-import { Container, Row,Jumbotron, Col, Button }from 'react-bootstrap';
+import { Container, Row, Col, Button }from 'react-bootstrap';
+import Hero from '../modules/Hero';
 
 
-const Page = () => (
+const Theme = () => (
     <React.Fragment>
       <Helmet>
           <meta charSet="utf-8" />
           <title>Page</title>
           <link rel="canonical" href="http://react-press.net" />
         </Helmet>
-        <Jumbotron fluid>
-          <Container>
-          <h1>react-press-Bootstrap</h1>
-          <p>
-            This is a simple hero unit, a simple jumbotron-style component for calling
-            extra attention to featured content or information.
-          </p>
-          <Button variant="primary">Learn more</Button>
-          </Container>
-        </Jumbotron>
+        <Hero/>
         <Container>
         <Row>
           <Col md={6}>
@@ -48,4 +40,4 @@ const Page = () => (
       </React.Fragment>   
 );
 
-export default Page;
+export default Theme;

@@ -1,9 +1,10 @@
 import React from 'react';
-import { Container, Form, Button } from 'react-bootstrap';
+import { Row,Container, Form, Button } from 'react-bootstrap';
 
 class ContactForm extends React.Component {
   render() { 
       return (
+          <Row>
               <Container>
                   <Form>
                     <Form.Group controlId="formBasicEmail">
@@ -26,6 +27,7 @@ class ContactForm extends React.Component {
                     </Button>
                     </Form>
               </Container>
+              </Row>
         );
     }
 }

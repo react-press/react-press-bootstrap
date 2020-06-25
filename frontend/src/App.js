@@ -27,7 +27,7 @@ class App extends React.Component {
             <Route exact path="/contact" component={Contact}/>
           </Switch>
         </Router>
-        <div className="text-center pb-3git a">
+        <div className="text-center pb-3">
           <p>Created By...</p>
           {this.state.users.map(user => 
               <span key={user.id}>{user.username} </span>

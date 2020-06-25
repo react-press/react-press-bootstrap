@@ -7,18 +7,39 @@ import Contact from './components/layouts/Contact';
 import Footer from './components/modules/Footer';
 
 
-export default function yohReact() {
-  return (
-    <React.Fragment>
-      <Navigation/>
-      <Router>
-        <Switch>
-          <Route exact path="/" component={Home}/>
-          <Route exact path="/theme" component={Theme}/>
-          <Route exact path="/contact" component={Contact}/>
-        </Switch>
-      </Router>
-      <Footer/>
-    </React.Fragment>
-  );
+class App extends React.Component {
+  state = { users: [] }
+
+  componentDidMount() {
+    fetch('/users')
+      .then(res => res.json())
+      .then(users => this.setState({ users }));
+  }
+
+  render() { 
+      return (
+        <React.Fragment>
+        <Navigation/>
+        <Router>
+          <Switch>
+            <Route exact path="/" component={Home}/>
+            <Route exact path="/theme" component={Theme}/>
+            <Route exact path="/contact" component={Contact}/>
+          </Switch>
+        </Router>
+        <div className="text-center pb-3git a">
+          <p>Created By...</p>
+          {this.state.users.map(user => 
+              <span key={user.id}>{user.username} </span>
+            )}
+            </div>
+        <Footer/>
+      </React.Fragment>
+        );
+    }
 }
+
+export default App;
+
+
+

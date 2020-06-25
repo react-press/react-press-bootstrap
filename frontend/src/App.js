@@ -11,7 +11,7 @@ class App extends React.Component {
   state = { users: [] }
 
   componentDidMount() {
-    fetch('express/users')
+    fetch('/express/users')
       .then(res => res.json())
       .then(users => this.setState({ users }));
   }

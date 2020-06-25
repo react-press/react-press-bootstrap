@@ -7,6 +7,7 @@
   <li><a href="https://www.npmjs.com/package/react-helmet">react-helmet</a></li>
   <li><a href="https://www.npmjs.com/package/react-router-dom">react-router-dom</a></li>
    <li><a href="https://getbootstrap.com/docs/4.4/getting-started/theming/"> bootstrap-custom-theme</a></li>
+   <li><a href="https://pm2.keymetrics.io/"> PM2 - run node app in background needed on server</a></li>
  </ul>
  <br/>
  NOTE: <a href="https://reactjs.org/blog/2019/08/08/react-v16.9.0.html#renaming-unsafe-lifecycle-methods">react-codemod for Lifecycle Methods</a>

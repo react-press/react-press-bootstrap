@@ -10,8 +10,4 @@ router.get('/test/:id', function(req, res, next) {
   res.render('test', {output: req.params.id});
 });
 
-router.post('/test/submit', function(req, res, next) {
-  res.redirect('/test/...');
-});
-
 module.exports = router;

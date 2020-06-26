@@ -26,6 +26,13 @@ app.use('/', indexRouter);
 app.use('/express/users', usersRouter);
 app.use('/express/wpaccess', wpAcessRouter);
 
+app.get('/express/wpaccess', function(req, res, next) {
+  res.send(res.wpAccessToken);
+  res.render('index', { title: 'Cool, huh!', condition: true, anyArray: [1,2,3] });
+  next();
+});
+
+
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));

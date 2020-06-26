@@ -3,6 +3,7 @@ import Navigation from './components/modules/Navigation'
 import { BrowserRouter as Router,Switch,Route} from "react-router-dom";
 import Home from './components/layouts/Home';
 import Theme from './components/layouts/Theme';
+import Archive from './components/layouts/pages/Archive';
 import Contact from './components/layouts/Contact';
 import Footer from './components/modules/Footer';
 
@@ -48,6 +49,7 @@ class App extends React.Component {
           <Switch>
             <Route exact path="/" component={Home}/>
             <Route exact path="/theme" component={Theme}/>
+            <Route exact path="/archive" component={Archive}/>
             <Route exact path="/contact" component={Contact}/>
           </Switch>
         </Router>

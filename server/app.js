@@ -1,6 +1,7 @@
 require('dotenv').config()
 var createError = require('http-errors');
 var express = require('express');
+var router = express.Router();
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
@@ -44,13 +45,12 @@ app.use(function(err, req, res, next) {
 app.listen(3001, () => console.log('Node.js app listening on port 3000.'))
 
 //API Call to Posts
-
 const https = require('https');
 const token = process.env.SECRET_KEY
 
 const options = {
   hostname: 'admin.react-press.net',
-  path: '/wp-json',
+  path: '/wp-json/wp/v2/posts',
   headers: {
       Authorization: 'Bearer' + token
   }
@@ -58,6 +58,7 @@ const options = {
 
 https.get(options, (resp) => {
   let data = '';
+  let posts = [];
 
   console.log(resp);
 
@@ -68,7 +69,9 @@ https.get(options, (resp) => {
 
   // The whole response has been received. Print out the result.
   resp.on('end', () => {
-    console.log(JSON.parse(data));
+    posts = JSON.parse(data);
+    console.log(posts);
+
   });
 
 }).on("error", (err) => {

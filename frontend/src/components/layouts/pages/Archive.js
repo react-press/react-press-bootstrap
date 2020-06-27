@@ -5,7 +5,7 @@ import Posts from '../../modules/archives/Posts';
 import Sidebar from '../../modules/archives/Sidebar';
 
 class Archive extends React.Component {
-    
+
     constructor(props) {
         super(props);
         this.state = {
@@ -18,7 +18,7 @@ class Archive extends React.Component {
   getPosts = () => {
     const token = process.env.ACCESS
     
-    axios.get('/wp-json/wp/v2/posts', {
+    axios.get('https://admin.react-press.net/wp-json/wp/v2/posts', {
         headers: {
             Authorization: "Bearer " + token
         }
@@ -38,8 +38,8 @@ class Archive extends React.Component {
     const details = this.state.posts.map((d)=> {
         const featured_media = d.featured_media;
         const author = d.author;
-        const getImageUrl = axios.get(`/wp-json/wp/v2/media/${ featured_media }`);
-        const getAuthor = axios.get(`/wp-json/wp/v2/users/${ author }`);
+        const getImageUrl = axios.get(`https://admin.react-press.net/wp-json/wp/v2/media/${ featured_media }`);
+        const getAuthor = axios.get(`https://admin.react-press.net/wp-json/wp/v2/users/${ author }`);
         console.log(featured_media, author);
         Promise.all([getImageUrl, getAuthor]).then(resp => {
         // console.log(resp.data);

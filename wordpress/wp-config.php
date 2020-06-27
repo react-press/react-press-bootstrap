@@ -1,5 +1,18 @@
 <?php
 
+//Begin Really Simple SSL Load balancing fix
+if ((isset($_ENV["HTTPS"]) && ("on" == $_ENV["HTTPS"]))
+|| (isset($_SERVER["HTTP_X_FORWARDED_SSL"]) && (strpos($_SERVER["HTTP_X_FORWARDED_SSL"], "1") !== false))
+|| (isset($_SERVER["HTTP_X_FORWARDED_SSL"]) && (strpos($_SERVER["HTTP_X_FORWARDED_SSL"], "on") !== false))
+|| (isset($_SERVER["HTTP_CF_VISITOR"]) && (strpos($_SERVER["HTTP_CF_VISITOR"], "https") !== false))
+|| (isset($_SERVER["HTTP_CLOUDFRONT_FORWARDED_PROTO"]) && (strpos($_SERVER["HTTP_CLOUDFRONT_FORWARDED_PROTO"], "https") !== false))
+|| (isset($_SERVER["HTTP_X_FORWARDED_PROTO"]) && (strpos($_SERVER["HTTP_X_FORWARDED_PROTO"], "https") !== false))
+|| (isset($_SERVER["HTTP_X_PROTO"]) && (strpos($_SERVER["HTTP_X_PROTO"], "SSL") !== false))
+) {
+$_SERVER["HTTPS"] = "on";
+}
+//END Really Simple SSL
+
 // BEGIN iThemes Security - Do not modify or remove this line
 // iThemes Security Config Details: 2
 define( 'DISALLOW_FILE_EDIT', true ); // Disable File Editor - Security > Settings > WordPress Tweaks > File Editor
@@ -43,8 +56,8 @@ define( 'DB_CHARSET', 'utf8mb4' );
 /** The Database Collate type. Don't change this if in doubt. */
 define( 'DB_COLLATE', '' );
 
-define( 'WP_HOME', 'http://admin.react-press.net/' );
-define( 'WP_SITEURL', 'http://admin.react-press.net/' );
+define('WP_HOME','https://admin.react-press.net/' );
+define('WP_SITEURL','https://admin.react-press.net/' );
 
 /**#@+
  * Authentication Unique Keys and Salts.
@@ -97,7 +110,8 @@ define( 'WP_DEBUG', false );
 if ( ! defined( 'ABSPATH' ) ) {
 	define( 'ABSPATH', __DIR__ . '/' );
 }
-
+/** Uploads */
+define( 'UPLOADS', 'wp-content/uploads' );
 /** Sets up WordPress vars and included files. */
 require_once ABSPATH . 'wp-settings.php';
 

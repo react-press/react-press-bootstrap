@@ -1,26 +1,32 @@
 import React from 'react';
-import { Col, Card, Button } from 'react-bootstrap';
+import PropTypes from 'prop-types';
+import Post from './Post';
 
 class Posts extends React.Component {
+
+  constructor(props){
+    super(props);
+    
+  }
+
   render() { 
+    const { posts, isLoaded, imgUrl, author } = this.props
+
+    if(isLoaded) {
       return (
-          <React.Fragment>
-            <Col md={6} lg={10} className="card-sidebar">
-                <Card className="w-100">
-                <Card.Img variant="top" src="http://via.placeholder.com/600x375" />
-                <Card.Body>
-                    <Card.Title>Blog Post Title</Card.Title>
-                    <Card.Text>
-                    Some quick example text to build on the card title and make up the bulk of
-                    the card's content.
-                    </Card.Text>
-                    <Button variant="primary">Go somewhere</Button>
-                </Card.Body>
-                </Card>
-            </Col>
-          </React.Fragment>
-        );
-    }
+            <div>
+              { posts.map(post => (
+                
+                <Post key={post.id} 
+                      post={post} 
+                      imgUrl={imgUrl} 
+                      author={author} />
+              )) }
+            </div>
+        )
+      }
+      return <h3>Loading...</h3>
+  }
 }
 
 export default Posts;

@@ -4,7 +4,6 @@ import { Container, Col, Nav} from 'react-bootstrap';
 class Sidebar extends React.Component {
   render() { 
       return (
-          <React.Fragment>
             <Col md={6} lg={2}>
                 <Container className="sidebar">
                     <h2>Blog-Categories</h2>
@@ -15,7 +14,6 @@ class Sidebar extends React.Component {
                         </Nav>
                 </Container>
             </Col>
-          </React.Fragment>
         );
     }
 }

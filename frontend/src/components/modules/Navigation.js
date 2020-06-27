@@ -11,6 +11,7 @@ const Navigation = () => (
                 <Nav className="ml-auto">
                     <Nav.Link href="/">Home</Nav.Link>
                     <Nav.Link href="/theme">Theme</Nav.Link>
+                    <Nav.Link href="/archive">Blog</Nav.Link>
                     <Nav.Link href="/contact">Contact</Nav.Link>
                 </Nav>
               </Navbar.Collapse>

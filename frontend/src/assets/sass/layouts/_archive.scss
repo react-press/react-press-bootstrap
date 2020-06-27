@@ -1,0 +1,35 @@
+//Archive
+.archive{
+    padding: 4rem 0;
+}
+.card-sidebar {
+    text-transform: none;
+    @include medium-screen {
+        padding: 0 0 2rem 200px;
+    }
+}
+
+.sidebar {
+    .sidebar-nav {
+        justify-content: center;
+        @include small-screen {
+            justify-content: left;
+        }
+    }
+    h2 {
+        font-size: 28px;
+        text-align: center;
+        @include small-screen {
+            font-size: 18px;
+            text-align: left;
+        }
+    }
+    .nav-link {
+        font-size: 13px;
+        text-align: center;
+        @include small-screen {
+            padding-left: 0;
+            text-align: left;
+        }
+    }
+}

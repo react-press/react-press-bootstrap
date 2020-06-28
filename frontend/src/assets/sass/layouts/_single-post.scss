@@ -1,0 +1,10 @@
+//Single Post
+.single-post {
+    text-transform: none;
+    @include large-screen {
+        padding: 0 150px 2rem 0px;
+    }
+    .featured-img {
+        
+    }
+}

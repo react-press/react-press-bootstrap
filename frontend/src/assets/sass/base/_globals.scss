@@ -7,6 +7,15 @@ body {
     letter-spacing: 0px;
     line-height: 1.6em;
 }
+
+h1 {
+    font-size: 40px;
+    line-height: 1.3em;
+    @include large-screen {
+        font-size: 64px;
+        line-height: 1.8em;
+    }
+}
 p {
     margin: 1rem auto;
     text-transform: none;
@@ -22,6 +31,9 @@ span {
 }
 
 .btn {
+    color: $white;
+}
+.btn-primary a {
     color: $white;
 }
 

@@ -12,7 +12,7 @@
 .sidebar {
     .sidebar-nav {
         justify-content: center;
-        @include small-screen {
+        @include large-screen {
             justify-content: left;
         }
     }

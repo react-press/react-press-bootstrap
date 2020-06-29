@@ -3,8 +3,8 @@ import Navigation from './components/modules/Navigation'
 import { BrowserRouter as Router,Switch,Route} from "react-router-dom";
 import Home from './components/layouts/Home';
 import Theme from './components/layouts/Theme';
-import Archive from './components/layouts/pages/Archive';
-import PostDetails from './components/layouts/pages/PostDetails'
+import Archive from './components/layouts/Archive';
+import PostDetails from './components/modules/archive/PostDetails'
 import Contact from './components/layouts/Contact';
 import Footer from './components/modules/Footer';
 

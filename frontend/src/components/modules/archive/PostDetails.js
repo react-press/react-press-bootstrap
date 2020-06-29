@@ -2,7 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import {Row, Container, Col, Image } from 'react-bootstrap';
-import Sidebar from '../../modules/archives/Sidebar'
+import Sidebar from './Sidebar'
 
 class PostDetails extends React.Component {
 

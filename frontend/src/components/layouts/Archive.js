@@ -1,8 +1,8 @@
 import React from 'react';
 import axios from 'axios';
 import { Row, Container } from 'react-bootstrap';
-import Posts from '../../modules/archives/Posts';
-import Sidebar from '../../modules/archives/Sidebar';
+import Posts from '../modules/archive/Posts';
+import Sidebar from '../modules/archive/Sidebar';
 
 class Archive extends React.Component {
 

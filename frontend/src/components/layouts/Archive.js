@@ -12,6 +12,7 @@ class Archive extends React.Component {
             posts: [],
             catID: '1, 2',
             categories: '',
+            category: '',
             imgUrl: '',
             author: '',
             isLoaded: false 
@@ -35,7 +36,8 @@ class Archive extends React.Component {
 })
     .then(() => {
         this.getDetails();
-        console.log(this.state.categories)
+        // this.mapCat();
+        // console.log(this.state.categories)
     })
     .catch(err => {
       console.log('err');
@@ -61,6 +63,16 @@ class Archive extends React.Component {
     });
   }
 
+  // mapCat = () => {
+  //   const useless = this.state.categories.map((d) =>{
+  //     const category = d.id;
+  //     this.setState({
+  //       category: category
+  //     })
+  //     console.log(this.state.category)
+  //   })
+  // }
+
   handleClick = () => {
     this.setState({catID: '2' }, 
     () => {this.getPosts({})});
@@ -71,8 +83,18 @@ class Archive extends React.Component {
     this.getPosts();
   }
 
+  // componentDidUpdate(prevProps) {
+  //   // Typical usage (don't forget to compare props):
+  //   if (this.props.catID !== prevProps.catID) {
+  //     this.getPosts(this.props.catID);
+  //   }
+    
+  // }
+  
+
     render(){
         const {posts, catID, isLoaded, imgUrl, author, categories } = this.state;
+      if(isLoaded){
         return(
             <Container>
                 <Row className="archive">
@@ -85,16 +107,24 @@ class Archive extends React.Component {
                 <Col lg={2}>
                 <Container className="sidebar">
                   <h2>Blog-Categories</h2>
-                        <Nav defaultActiveKey="/home" className="sidebar-nav flex-lg-column pb-3 pb-sm-0">
-                          <Link to={`/archive/${categories}`} onClick={this.handleClick}>All Posts</Link>
-                          <Link to={`/archive/category-1`} onClick={this.handleClick}>Category 1</Link>
-                          <Link to={`/archive/category-2`} onClick={this.handleClick}>Category 2</Link>
+                      <Nav defaultActiveKey="/home" className="sidebar-nav flex-lg-column pb-3 pb-sm-0">
+
+                        {categories.map((category) => (
+
+                            <Nav.Link onClick={this.handleClick} key={category.id} href={category.slug}>{category.name}</Nav.Link>
+
+                      ))}
+
+                          {/* <Link to={`/archive/${category}`} onClick={this.handleClick}>All Posts</Link> */}
+
                       </Nav>
                 </Container>
                 </Col> 
                 </Row>
             </Container>
         )
+      }
+      return <h3>Loading...</h3>
     }
 }
   

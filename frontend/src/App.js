@@ -4,7 +4,7 @@ import { BrowserRouter as Router,Switch,Route} from "react-router-dom";
 import Home from './components/layouts/Home';
 import Theme from './components/layouts/Theme';
 import Archive from './components/layouts/Archive';
-import PostDetails from './components/modules/archive/PostDetails'
+import SinglePost from './components/layouts/SinglePost'
 import Contact from './components/layouts/Contact';
 import Footer from './components/modules/Footer';
 
@@ -18,7 +18,10 @@ const App = () =>  (
             <Route exact path="/" component={Home}/>
             <Route exact path="/theme" component={Theme}/>
             <Route exact path="/archive" component={Archive}/>
-            <Route exact path="/post/:id" component={PostDetails}/>
+            <Route exact path="/archive/all-posts" component={Archive}/>
+            <Route exact path="/archive/category-1" component={Archive}/>
+            <Route exact path="/archive/category-2" component={Archive}/>
+            <Route exact path="/post/:id" component={SinglePost}/>
             <Route exact path="/contact" component={Contact}/>
           </Switch>
         </Router>

@@ -1,8 +1,8 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import axios from 'axios';
-import { Row, Container } from 'react-bootstrap';
+import { Row, Container, Col, Nav } from 'react-bootstrap';
 import Posts from '../modules/archive/Posts';
-import Sidebar from '../modules/archive/Sidebar';
 
 class Archive extends React.Component {
 
@@ -10,6 +10,8 @@ class Archive extends React.Component {
         super(props);
         this.state = {
             posts: [],
+            catID: '1, 2',
+            categories: '',
             imgUrl: '',
             author: '',
             isLoaded: false 
@@ -18,16 +20,22 @@ class Archive extends React.Component {
   getPosts = () => {
     const token = process.env.ACCESS
     
-    axios.get('https://admin.react-press.net/wp-json/wp/v2/posts', {
+    const getPosts = axios.get(`https://admin.react-press.net/wp-json/wp/v2/posts?categories=${this.state.catID}`, {
         headers: {
             Authorization: "Bearer " + token
         }
     })
-    .then(res => this.setState({
-      posts: res.data
-    }))
+    const getCat = axios.get('https://admin.react-press.net/wp-json/wp/v2/categories');
+
+    Promise.all([getPosts, getCat]).then(res => {
+      this.setState({
+        posts: res[0].data,
+        categories: res[1].data
+    });
+})
     .then(() => {
         this.getDetails();
+        console.log(this.state.categories)
     })
     .catch(err => {
       console.log('err');
@@ -40,9 +48,8 @@ class Archive extends React.Component {
         const author = d.author;
         const getImageUrl = axios.get(`https://admin.react-press.net/wp-json/wp/v2/media/${ featured_media }`);
         const getAuthor = axios.get(`https://admin.react-press.net/wp-json/wp/v2/users/${ author }`);
-        console.log(featured_media, author);
+
         Promise.all([getImageUrl, getAuthor]).then(resp => {
-        // console.log(resp.data);
         
         this.setState({
             imgUrl: resp[0].data.source_url,
@@ -54,23 +61,37 @@ class Archive extends React.Component {
     });
   }
 
+  handleClick = () => {
+    this.setState({catID: '2' }, 
+    () => {this.getPosts({})});
+    
+  };
+
   componentDidMount() {
     this.getPosts();
-
   }
+
     render(){
-        // console.log(this.state.posts)
-        const {posts, isLoaded, imgUrl, author } = this.state;
+        const {posts, catID, isLoaded, imgUrl, author, categories } = this.state;
         return(
             <Container>
                 <Row className="archive">
-                    <Sidebar/>
                     <Posts 
                         posts={posts} 
                         isLoaded={isLoaded}
                         imgUrl={imgUrl}
                         author={author}
                         />
+                <Col lg={2}>
+                <Container className="sidebar">
+                  <h2>Blog-Categories</h2>
+                        <Nav defaultActiveKey="/home" className="sidebar-nav flex-lg-column pb-3 pb-sm-0">
+                          <Link to={`/archive/${categories}`} onClick={this.handleClick}>All Posts</Link>
+                          <Link to={`/archive/category-1`} onClick={this.handleClick}>Category 1</Link>
+                          <Link to={`/archive/category-2`} onClick={this.handleClick}>Category 2</Link>
+                      </Nav>
+                </Container>
+                </Col> 
                 </Row>
             </Container>
         )

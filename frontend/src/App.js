@@ -18,9 +18,9 @@ const App = () =>  (
             <Route exact path="/" component={Home}/>
             <Route exact path="/theme" component={Theme}/>
             <Route exact path="/archive/">
-              <Redirect to="/archive/1"/>
+              <Redirect to="/archive/all-posts"/>
             </Route>
-            <Route exact path="/archive/:id" component={Archive}/>
+            <Route exact path="/archive/:slug"  component={Archive}/>
             <Route exact path="/post/:id" component={SinglePost}/>
             <Route exact path="/contact" component={Contact}/>
           </Switch>

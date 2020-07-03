@@ -10,7 +10,7 @@ class Archive extends React.Component {
         super(props);
         this.state = {
             posts: [],
-            catID: '1. 2',
+            catID: '1',
             categories: '',
             category: '',
             imgUrl: '',
@@ -21,7 +21,7 @@ class Archive extends React.Component {
   getPosts = () => {
     const token = process.env.ACCESS
     
-    const getPosts = axios.get(`https://admin.react-press.net/wp-json/wp/v2/posts?categories=${this.props.match.params.id}`, {
+    const getPosts = axios.get(`https://admin.react-press.net/wp-json/wp/v2/posts?categories=${this.props.location.state.catID}`, {
         headers: {
             Authorization: "Bearer " + token
         }
@@ -157,7 +157,10 @@ class Archive extends React.Component {
 
                         {categories.map((category) => (
                           
-                            <Link to={`/archive/${category.id}`} key={category.id} onClick={ this.mapCat }>{category.name} </Link>
+                            <Link to={{
+                              pathname: `/archive/${category.slug}`,
+                              state: { catID: category.id }
+                            }}  key={category.id} onClick={ this.mapCat }>{category.name} </Link>
 
                       ))}
 

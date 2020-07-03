@@ -1,6 +1,6 @@
 import React from "react";
 import Navigation from './components/modules/Navigation'
-import { BrowserRouter as Router,Switch,Route} from "react-router-dom";
+import { BrowserRouter as Router,Switch,Route, Redirect} from "react-router-dom";
 import Home from './components/layouts/Home';
 import Theme from './components/layouts/Theme';
 import Archive from './components/layouts/Archive';
@@ -17,7 +17,9 @@ const App = () =>  (
           <Switch>
             <Route exact path="/" component={Home}/>
             <Route exact path="/theme" component={Theme}/>
-            {/* <Route exact path="/archive/"component={Archive}/> */}
+            <Route exact path="/archive/">
+              <Redirect to="/archive/1"/>
+            </Route>
             <Route exact path="/archive/:id" component={Archive}/>
             <Route exact path="/post/:id" component={SinglePost}/>
             <Route exact path="/contact" component={Contact}/>

@@ -18,6 +18,42 @@ class Archive extends React.Component {
             isLoaded: false 
         }
     }
+
+    getPosts3 = (props) => {
+      if(this.props.location.state == 'undefined') {
+        this.getPosts2();
+      } else {
+        
+        this.getPosts();
+      }
+    }
+
+    getPosts2 = () => {
+      const token = process.env.ACCESS
+      
+      const getPosts = axios.get(`https://admin.react-press.net/wp-json/wp/v2/posts?categories=1`, {
+          headers: {
+              Authorization: "Bearer " + token
+          }
+      })
+      const getCat = axios.get('https://admin.react-press.net/wp-json/wp/v2/categories');
+  
+      Promise.all([getPosts, getCat]).then(res => {
+        this.setState({
+          posts: res[0].data,
+          categories: res[1].data
+      });
+  })
+      .then(() => {
+          this.getDetails();
+          // console.log(this.state.categories)
+      })
+      .catch(err => {
+        console.log('err');
+      })
+    }
+
+
   getPosts = () => {
     const token = process.env.ACCESS
     
@@ -36,13 +72,13 @@ class Archive extends React.Component {
 })
     .then(() => {
         this.getDetails();
-        // this.mapCat();
         // console.log(this.state.categories)
     })
     .catch(err => {
       console.log('err');
     })
   }
+
 
   getDetails = () => {
     const details = this.state.posts.map((d)=> {
@@ -70,33 +106,12 @@ class Archive extends React.Component {
       const category = {...this.state.categories};
 
       const cat1 = category[0];
-      // category[key] = val;
-
-      // if (typeof key === 'string') {
-      //   category[key] = val;
-      // } else {
-      //   key.map((item, index) => {
-      //     category[item] = val[index];
-      //   });
-      // }
       this.setState({catID: category});
       console.log(category)
       console.log(cat1)
       
     }
   
-
-  // handleSetState(cat, key, val) {
-  //   const category = {...this.state[cat]};
-  //   if (typeof key === 'string') {
-  //     category[key] = val;
-  //   } else {
-  //     key.map((item, index) => {
-  //       category[item] = val[index];
-  //     });
-  //   }
-  //   this.setState({[cat]: category});
-  // }
 
   handleClick = () => {
     this.setState({catID: '2' }, 
@@ -105,76 +120,56 @@ class Archive extends React.Component {
   };
 
   componentDidMount() {
-    this.getPosts();
+    this.getPosts3();
   }
 
-  // componentDidUpdate(prevProps, prevState, screenShot) {
-
-      
-    // console.warn(prevState);
-    // if (this.state.catID !== this.props.match.params.id) {
-    // console.log(this.props.match.params.id);
-
-
-    // }
-      // console.log(this.props.match.params.id)
-  // }
-
-  // componentDidUpdate(){
-  //   if (this.state.catID === this.props.match.params.id) {
-  //     this.getPosts();
-  // }
-
   componentDidUpdate(prevState) {
-    // const {cat } = this.state.catID;
     
     if (this.props.location.pathname !== prevState.location.pathname) {
-
+      
         this.getPosts();
       }
+
+      window.scrollTo(0,0)
 }
   
 
     render(){
         const {posts, catID, isLoaded, imgUrl, author, categories } = this.state;
 
+            if(isLoaded){
+              return(
+                  <Container>
+                      <Row className="archive">
+                          <Posts 
+                              posts={posts} 
+                              isLoaded={isLoaded}
+                              imgUrl={imgUrl}
+                              author={author}
+                              />
+                      <Col lg={2}>
+                      <Container className="sidebar">
+                        <h2>Blog-Categories</h2>
+                            <Nav defaultActiveKey="/archive" className="sidebar-nav flex-lg-column pb-3 pb-sm-0">
 
+                              {categories.map((category) => (
+                                
+                                  <Link to={{
+                                    pathname: `/archive/${category.slug}`,
+                                    state: { catID: category.id }
+                                  }}   key={category.id} >{category.name} </Link>
 
-      if(isLoaded){
-        return(
-            <Container>
-                <Row className="archive">
-                    <Posts 
-                        posts={posts} 
-                        isLoaded={isLoaded}
-                        imgUrl={imgUrl}
-                        author={author}
-                        />
-                <Col lg={2}>
-                <Container className="sidebar">
-                  <h2>Blog-Categories</h2>
-                      <Nav defaultActiveKey="/archive" className="sidebar-nav flex-lg-column pb-3 pb-sm-0">
+                            ))}
 
-                        {categories.map((category) => (
-                          
-                            <Link to={{
-                              pathname: `/archive/${category.slug}`,
-                              state: { catID: category.id }
-                            }}  key={category.id} onClick={ this.mapCat }>{category.name} </Link>
-
-                      ))}
-
-                          {/* <Link to={`/archive/${category}`} onClick={this.handleClick}>All Posts</Link> */}
-
-                      </Nav>
-                </Container>
-                </Col> 
-                </Row>
-            </Container>
-        )
+                            </Nav>
+                      </Container>
+                      </Col> 
+                      </Row>
+                  </Container>
+              )
+            }
+            return <h3>Loading...</h3>
+          }
       }
-      return <h3>Loading...</h3>
-    }
-}
   
   export default Archive;  

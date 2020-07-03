@@ -10,7 +10,7 @@ class Archive extends React.Component {
         super(props);
         this.state = {
             posts: [],
-            catID: '1, 2',
+            catID: '1. 2',
             categories: '',
             category: '',
             imgUrl: '',
@@ -21,7 +21,7 @@ class Archive extends React.Component {
   getPosts = () => {
     const token = process.env.ACCESS
     
-    const getPosts = axios.get(`https://admin.react-press.net/wp-json/wp/v2/posts?categories=${this.state.catID}`, {
+    const getPosts = axios.get(`https://admin.react-press.net/wp-json/wp/v2/posts?categories=${this.props.match.params.id}`, {
         headers: {
             Authorization: "Bearer " + token
         }
@@ -56,6 +56,7 @@ class Archive extends React.Component {
         this.setState({
             imgUrl: resp[0].data.source_url,
             author: resp[1].data.name,
+            category: resp[1].data.id,
             isLoaded: true
         });
     })
@@ -63,14 +64,38 @@ class Archive extends React.Component {
     });
   }
 
-  // mapCat = () => {
-  //   const useless = this.state.categories.map((d) =>{
-  //     const category = d.id;
-  //     this.setState({
-  //       category: category
-  //     })
-  //     console.log(this.state.category)
-  //   })
+  mapCat = () => {
+     
+
+      const category = {...this.state.categories};
+
+      const cat1 = category[0];
+      // category[key] = val;
+
+      // if (typeof key === 'string') {
+      //   category[key] = val;
+      // } else {
+      //   key.map((item, index) => {
+      //     category[item] = val[index];
+      //   });
+      // }
+      this.setState({catID: category});
+      console.log(category)
+      console.log(cat1)
+      
+    }
+  
+
+  // handleSetState(cat, key, val) {
+  //   const category = {...this.state[cat]};
+  //   if (typeof key === 'string') {
+  //     category[key] = val;
+  //   } else {
+  //     key.map((item, index) => {
+  //       category[item] = val[index];
+  //     });
+  //   }
+  //   this.setState({[cat]: category});
   // }
 
   handleClick = () => {
@@ -83,17 +108,38 @@ class Archive extends React.Component {
     this.getPosts();
   }
 
-  // componentDidUpdate(prevProps) {
-  //   // Typical usage (don't forget to compare props):
-  //   if (this.props.catID !== prevProps.catID) {
-  //     this.getPosts(this.props.catID);
-  //   }
-    
+  // componentDidUpdate(prevProps, prevState, screenShot) {
+
+      
+    // console.warn(prevState);
+    // if (this.state.catID !== this.props.match.params.id) {
+    // console.log(this.props.match.params.id);
+
+
+    // }
+      // console.log(this.props.match.params.id)
   // }
+
+  // componentDidUpdate(){
+  //   if (this.state.catID === this.props.match.params.id) {
+  //     this.getPosts();
+  // }
+
+  componentDidUpdate(prevState) {
+    // const {cat } = this.state.catID;
+    
+    if (this.props.location.pathname !== prevState.location.pathname) {
+
+        this.getPosts();
+      }
+}
   
 
     render(){
         const {posts, catID, isLoaded, imgUrl, author, categories } = this.state;
+
+
+
       if(isLoaded){
         return(
             <Container>
@@ -107,11 +153,11 @@ class Archive extends React.Component {
                 <Col lg={2}>
                 <Container className="sidebar">
                   <h2>Blog-Categories</h2>
-                      <Nav defaultActiveKey="/home" className="sidebar-nav flex-lg-column pb-3 pb-sm-0">
+                      <Nav defaultActiveKey="/archive" className="sidebar-nav flex-lg-column pb-3 pb-sm-0">
 
                         {categories.map((category) => (
-
-                            <Nav.Link onClick={this.handleClick} key={category.id} href={category.slug}>{category.name}</Nav.Link>
+                          
+                            <Link to={`/archive/${category.id}`} key={category.id} onClick={ this.mapCat }>{category.name} </Link>
 
                       ))}
 

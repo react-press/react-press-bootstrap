@@ -17,10 +17,8 @@ const App = () =>  (
           <Switch>
             <Route exact path="/" component={Home}/>
             <Route exact path="/theme" component={Theme}/>
-            <Route exact path="/archive" component={Archive}/>
-            <Route exact path="/archive/all-posts" component={Archive}/>
-            <Route exact path="/archive/category-1" component={Archive}/>
-            <Route exact path="/archive/category-2" component={Archive}/>
+            {/* <Route exact path="/archive/"component={Archive}/> */}
+            <Route exact path="/archive/:id" component={Archive}/>
             <Route exact path="/post/:id" component={SinglePost}/>
             <Route exact path="/contact" component={Contact}/>
           </Switch>

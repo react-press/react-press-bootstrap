@@ -11,6 +11,7 @@ class Archive extends React.Component {
         this.state = {
             posts: [],
             catID: '1',
+            allPosts: true,
             categories: '',
             category: '',
             imgUrl: '',
@@ -19,9 +20,18 @@ class Archive extends React.Component {
         }
     }
 
+    static defaultProps = {
+        state: {CatID: '1'}
+      
+    }
+
+    
+
     getPosts3 = (props) => {
-      if(this.props.location.state == 'undefined') {
+
+      if(this.state.catID === '1') {
         this.getPosts2();
+
       } else {
         
         this.getPosts();
@@ -57,7 +67,7 @@ class Archive extends React.Component {
   getPosts = () => {
     const token = process.env.ACCESS
     
-    const getPosts = axios.get(`https://admin.react-press.net/wp-json/wp/v2/posts?categories=${this.props.location.state.catID}`, {
+    const getPosts = axios.get(`https://admin.react-press.net/wp-json/wp/v2/posts?categories=${this.props.location.state.catID }`, {
         headers: {
             Authorization: "Bearer " + token
         }

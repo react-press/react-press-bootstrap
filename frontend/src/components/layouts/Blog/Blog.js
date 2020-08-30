@@ -1,6 +1,7 @@
 import React, { useEffect, useState} from 'react';
+import { Link } from 'react-router-dom';
 import axios from 'axios';
-// import { Row, Container, Col, Nav, Card, Button } from 'react-bootstrap';
+import { Row, Container, Col, Nav, Card, Button } from 'react-bootstrap';
 
 
 const Blog = (props) => {
@@ -56,23 +57,28 @@ useEffect(() => {
       })
     }
 }, [isMounted]);
-
-
     
   if(isLoaded) {
     return (
       <React.Fragment>
-        <h1>Blog </h1>
         <div>
           { posts.map(post => (
                   
-            <div key={post.id}>
-                
-               {post.slug}
-                
-             </div>
-
-                )) }
+            <Col lg={10} key={post.id} className="cared-sidebar">
+                <Card className="w-100">
+                  <Card.Img variant="top" src="http://via.placeholder.com/300x200" />
+                    <Card.Body>
+                      <Card.Title>{post.title.rendered}</Card.Title>
+                      <Card.Text dangerouslySetInnerHTML={{__html: post.excerpt.rendered}}>
+                      </Card.Text>
+                          <h6>{ 'Posted by andrew' }</h6>
+                      <Button variant="primary">
+                          <Link to={`/${post.slug}`}>Read More</Link>
+                      </Button>
+                    </Card.Body>
+                </Card>
+             </Col>
+             )) } 
          </div>
       </React.Fragment>
     ) 
@@ -80,3 +86,7 @@ useEffect(() => {
 }
 
 export default Blog;
+
+const PostDetails = () => {
+
+}

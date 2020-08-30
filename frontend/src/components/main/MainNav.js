@@ -2,6 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router,Switch,Route, Redirect} from "react-router-dom";
 import { Container, Navbar, Nav } from 'react-bootstrap';
 import Blog from '../layouts/Blog/Blog';
+import Post from '../layouts/Blog/Post';
 
 class MainNav extends React.Component {
 
@@ -23,8 +24,11 @@ class MainNav extends React.Component {
               <Switch>
                 <Route exact path="/" component={Blog}/>
                 <Route exact path="/blog" component={Blog}/>
+                
                 <Route exact path="/all-posts/:slug" component={Blog}/>
                 <Route exact path="/category/:slug" component={Blog}/>
+                <Route exact path="/:slug/" component={Post}/>
+                
           </Switch>
         </Router>
             </React.Fragment>

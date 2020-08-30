@@ -1,35 +1,70 @@
-import React, { Component } from 'react';
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
 import { Link } from 'react-router-dom';
 import { Col, Card, Button } from 'react-bootstrap';
 
 
-class Post extends Component {
+const Post = (props) => {
+
+    const [post, setPost] = React.useState([]);
+    const [isMounted, setIsMounted] = React.useState(false);
+    const [isLoaded, setIsLoaded] = React.useState(false);
+    const [slug, setSlug] = React.useState(`${props.location.pathname}`)
+    const [postID, setPostID] = React.useState([])
+    const [date, setDate] = React.useState([])
+    const [title, setTitle] = React.useState([])
+
+    useEffect(() => {
+        const getPosts = () => {
     
-    constructor(props){
-        super(props);
+            axios.get(`https://admin.react-press.net/wp-json/wp/v2/posts/`)
         
-      }
+            .then((resp) => {
+      
+                resp.data.map(post => {
+        
+                  let idx = post.slug;
+        
+                  if(slug == '/' + idx){
+                    setPost(post)
+                    setPostID(post.id)
+                    console.log(post.id)
+                  }
+                })
+              }
+            )
+            .then(()=> {
+              setIsMounted(true)
+            })
+            .catch((err) => {
+              console.log(err)
+            })
+          }
+          getPosts();
+        }, [])
 
-    render(){
-        const { id, post, isLoaded, imgUrl, author, title } = this.props;
+//set the endpoints needed for single post in state
+useEffect(() => {
+    if (isMounted) {        
 
-        return(
-            <Col lg={10} className="card-sidebar">
-            <Card className="w-100">
-            <Card.Img variant="top" src={ imgUrl } />
-            <Card.Body>
-                <Card.Title>{post.title.rendered}</Card.Title>
-                <Card.Text dangerouslySetInnerHTML={{__html: post.excerpt.rendered}}>
-                </Card.Text>
-                    <h6>{ 'Posted by ' + author }</h6>
-                <Button variant="primary">
-                    <Link to={`/post/${post.id}`}>Read More</Link>
-                </Button>
-            </Card.Body>
-            </Card>
-            </Col>
-        )
+        setDate(post.date);
+        setTitle(post.title.rendered);
+        setIsLoaded(true);
+        console.log(post)
     }
+
+})
+
+if(isLoaded){
+    return (
+    <React.Fragment>
+        
+        <h1>{title}</h1>
+        <span>{date}</span>
+    </React.Fragment>    
+    )
+    } return <h3>Loading ...</h3>
 }
+
 
 export default Post;

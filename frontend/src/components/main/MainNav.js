@@ -2,7 +2,6 @@ import React from 'react';
 import { BrowserRouter as Router,Switch,Route, Redirect} from "react-router-dom";
 import { Container, Navbar, Nav } from 'react-bootstrap';
 import Blog from '../layouts/Blog/Blog';
-import Categories from '../layouts/Blog/Categories'
 
 class MainNav extends React.Component {
 
@@ -23,10 +22,9 @@ class MainNav extends React.Component {
             <Router>
               <Switch>
                 <Route exact path="/" component={Blog}/>
+                <Route exact path="/blog" component={Blog}/>
                 <Route exact path="/all-posts/:slug" component={Blog}/>
-                <Route exact path="category/:slug" component={Blog}/>
-                {/* <Route exact path="/archive/:slug"  component={Archive}/>
-                <Route exact path="/post/:id" component={Categories}/> */}
+                <Route exact path="/category/:slug" component={Blog}/>
           </Switch>
         </Router>
             </React.Fragment>

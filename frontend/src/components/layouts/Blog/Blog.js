@@ -6,33 +6,34 @@ import { Row, Container, Col, Nav, Card, Button } from 'react-bootstrap';
 
 const Blog = (props) => {
 
+  const [categories, setCategories] = React.useState(false);
+  const [archiveTitle, setArchiveTitle] = React.useState('Blog');
   const [posts, setPosts] = React.useState([]);
-  const [isMounted, setIsMounted] = React.useState(false);
+  const [featuredImage, setFeaturedImage] = React.useState([]);
   const [isLoaded, setIsLoaded] = React.useState(false);
   const [slug, setSlug] = React.useState(`${props.location.pathname}`)
   const [catID, setCat] = React.useState(1)
 
-  useEffect(() =>{
-
+  useEffect(() => {
+    //GETs categories maps the data
     const getCategories = () => {
     
       axios.get(`https://admin.react-press.net/wp-json/wp/v2/categories/`)
   
-      .then((resp) => {
-
-          resp.data.map(category => {
+      .then((res) => {
+          res.data.map(category => {
   
             let idx = category.slug;
   
             if(slug == '/category/' + idx){
               setCat(category.id)
-              console.log(category.id)
+              setArchiveTitle(category.name)
             }
           })
         }
       )
       .then(()=> {
-        setIsMounted(true)
+        setCategories(true)
       })
       .catch((err) => {
         console.log(err)
@@ -43,30 +44,40 @@ const Blog = (props) => {
 
 //get posts if first function fires successfully
 useEffect(() => {
-  if (isMounted) {
+  if (categories) {
   
       axios.get(`https://admin.react-press.net/wp-json/wp/v2/posts?categories=${catID}`)
 
       .then(res =>{
 
-        console.log(res.data);
-        console.log(catID)
-        setPosts(res.data);
-        setIsLoaded(true);
+        res.data.map(post => {
+          const featured_media = post.featured_media;
+
+          const getImageUrl = axios.get(`https://admin.react-press.net/wp-json/wp/v2/media/${featured_media}`)
+
+            .then((image) => {
+              // console.log(image.data.source_url)
+              setPosts(res.data);
+              setFeaturedImage(image.data.source_url)
+              setIsLoaded(true);
+            })
+        })
 
       })
     }
-}, [isMounted]);
+}, [categories]);
     
   if(isLoaded) {
     return (
       <React.Fragment>
-        <div>
+        <h1>{archiveTitle}</h1>
+        <Row>
+          
           { posts.map(post => (
                   
-            <Col lg={10} key={post.id} className="cared-sidebar">
+            <Col lg={4} key={post.id} className="cared-sidebar">
                 <Card className="w-100">
-                  <Card.Img variant="top" src="http://via.placeholder.com/300x200" />
+                  <Card.Img variant="top" src={featuredImage}/>
                     <Card.Body>
                       <Card.Title>{post.title.rendered}</Card.Title>
                       <Card.Text dangerouslySetInnerHTML={{__html: post.excerpt.rendered}}>
@@ -79,14 +90,10 @@ useEffect(() => {
                 </Card>
              </Col>
              )) } 
-         </div>
+         </Row>
       </React.Fragment>
     ) 
   } return <h3>Loading...</h3>
 }
 
 export default Blog;
-
-const PostDetails = () => {
-
-}

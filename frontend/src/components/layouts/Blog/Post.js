@@ -1,7 +1,5 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect} from 'react';
 import axios from 'axios';
-import { Link } from 'react-router-dom';
-import { Col, Card, Button } from 'react-bootstrap';
 
 
 const Post = (props) => {
@@ -9,11 +7,15 @@ const Post = (props) => {
     const [post, setPost] = React.useState([]);
     const [isMounted, setIsMounted] = React.useState(false);
     const [isLoaded, setIsLoaded] = React.useState(false);
-    const [slug, setSlug] = React.useState(`${props.location.pathname}`)
-    const [postID, setPostID] = React.useState([])
-    const [date, setDate] = React.useState([])
-    const [title, setTitle] = React.useState([])
+    const [slug] = React.useState(`${props.location.pathname}`);
+    const [postID, setPostID] = React.useState([]);
+    const [date, setDate] = React.useState([]);
+    const [title, setTitle] = React.useState([]);
+    const [featuredMedia, setImgID] = React.useState([]);
+    const [source_url, setSourceUrl] = React.useState([]);
+    const [content, setContent] = React.useState([]);
 
+    //inital request to GET posts
     useEffect(() => {
         const getPosts = () => {
     
@@ -25,10 +27,12 @@ const Post = (props) => {
         
                   let idx = post.slug;
         
-                  if(slug == '/' + idx){
-                    setPost(post)
-                    setPostID(post.id)
-                    console.log(post.id)
+                  if(slug === '/' + idx){
+                    setPost(post);
+                    setPostID(post.id);
+                    setContent(post.content);
+                    setImgID(post.featured_media)
+                    console.log(post.featured_media);
                   }
                 })
               }
@@ -43,17 +47,24 @@ const Post = (props) => {
           getPosts();
         }, [])
 
-//set the endpoints needed for single post in state
-useEffect(() => {
-    if (isMounted) {        
+  //set the endpoints needed for single post in state
+  useEffect(() => {
+      if (isMounted) {    
 
-        setDate(post.date);
-        setTitle(post.title.rendered);
-        setIsLoaded(true);
-        console.log(post)
-    }
+        const getImageUrl = axios.get(`https://admin.react-press.net/wp-json/wp/v2/media/${featuredMedia}`)
+        
+        // Promise.all([getImageUrl])
+        
+          .then((featured_image) => {
+            setSourceUrl(featured_image.data.source_url);
+            setDate(post.date);
+            setTitle(post.title.rendered);
+            setIsLoaded(true);
+            console.log(post)
+          })
+      }
 
-})
+}, [isMounted])
 
 if(isLoaded){
     return (
@@ -61,6 +72,9 @@ if(isLoaded){
         
         <h1>{title}</h1>
         <span>{date}</span>
+        <img src={source_url} />
+        <div dangerouslySetInnerHTML={{__html: post.content.rendered}}></div>
+
     </React.Fragment>    
     )
     } return <h3>Loading ...</h3>

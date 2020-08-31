@@ -42,24 +42,23 @@ const Blog = (props) => {
   getCategories();
 }, [])
 
-//get posts if first function fires successfully
 useEffect(() => {
   if (categories) {
-  
+      //GET posts in category that match the slug
       axios.get(`https://admin.react-press.net/wp-json/wp/v2/posts?categories=${catID}`)
 
       .then(res =>{
 
         res.data.map(post => {
-          const featured_media = post.featured_media;
 
+          const featured_media = post.featured_media;
           const getImageUrl = axios.get(`https://admin.react-press.net/wp-json/wp/v2/media/${featured_media}`)
 
             .then((image) => {
-              // console.log(image.data.source_url)
               setPosts(res.data);
               setFeaturedImage(image.data.source_url)
               setIsLoaded(true);
+              
             })
         })
 
@@ -77,7 +76,7 @@ useEffect(() => {
                   
             <Col lg={4} key={post.id} className="cared-sidebar">
                 <Card className="w-100">
-                  <Card.Img variant="top" src={featuredImage}/>
+                <Link to={`/${post.slug}`}><Card.Img variant="top" src={featuredImage}/></Link>
                     <Card.Body>
                       <Card.Title>{post.title.rendered}</Card.Title>
                       <Card.Text dangerouslySetInnerHTML={{__html: post.excerpt.rendered}}>

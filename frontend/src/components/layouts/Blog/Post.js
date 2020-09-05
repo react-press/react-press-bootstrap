@@ -1,6 +1,7 @@
 import React, { useEffect} from 'react';
 import NoMatch from '../NoMatch';
 import axios from 'axios';
+import { Row, Container, Col } from 'react-bootstrap';
 
 
 const Post = (props) => {
@@ -8,7 +9,7 @@ const Post = (props) => {
     const [post, setPost] = React.useState([]);
     const [isMounted, setIsMounted] = React.useState(false);
     const [isLoaded, setIsLoaded] = React.useState(false);
-    const [slug, setSlug] = React.useState(`${props.location.pathname}`);
+    const [slug] = React.useState(`${props.location.pathname}`);
     const [postID, setPostID] = React.useState([]);
     const [date, setDate] = React.useState([]);
     const [title, setTitle] = React.useState([]);
@@ -66,14 +67,24 @@ const Post = (props) => {
 
 if(isLoaded && isMounted){
     return (
-    <React.Fragment>
-        
+      <React.Fragment>
+      <div className="single-post">
+      <Container fluid>
+      <Row className="hero" 
+        style={{backgroundImage: ` linear-gradient(black, black), url(${source_url})`}}>
+        <Col md={6}>
         <h1>{title}</h1>
-        <span>{date}</span>
-        <img src={source_url} />
-        <div dangerouslySetInnerHTML={{__html: post.content.rendered}}></div>
-
-    </React.Fragment>    
+        <p>The single image block has three variations. single image left, single image right, and single image fluid. The single image can have a caption, and the suggested size is __. The stylesheet is located</p>
+        </Col>
+      </Row>
+      </Container>        
+    <Container>
+        <Row className="single-post-content">
+          <div dangerouslySetInnerHTML={{__html: post.content.rendered}}></div>
+        </Row>
+    </Container>  
+    </div>
+    </React.Fragment>  
     )
     } else if(!isMounted && isLoaded){
       

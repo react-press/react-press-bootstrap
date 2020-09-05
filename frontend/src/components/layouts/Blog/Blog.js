@@ -1,7 +1,7 @@
-import React, { useEffect, useState} from 'react';
+import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
-import { Row, Container, Col, Nav, Card, Button } from 'react-bootstrap';
+import { Row, Container, Col, Nav, Card, Button, Pagination } from 'react-bootstrap';
 
 
 const Blog = (props) => {
@@ -46,9 +46,10 @@ useEffect(() => {
   if (categories) {
       //GET posts in category that match the slug
       axios.get(`https://admin.react-press.net/wp-json/wp/v2/posts?categories=${catID}`)
+      //&per_page=5&offset=2
 
       .then(res =>{
-
+        console.log(res);
         res.data.map(post => {
 
           const featured_media = post.featured_media;
@@ -65,6 +66,24 @@ useEffect(() => {
       })
     }
 }, [categories]);
+
+// let active = 2;
+// let item = [];
+
+// for (let number = 1; number <= 5; number++) {
+//   item.push(
+//     <Pagination.Item key={number} active={number === active}>
+//       {number}
+//     </Pagination.Item>,
+//   );
+// }
+
+// const paginationBasic = (
+//   <div>
+//     <Pagination>{item}</Pagination>
+//     <br />
+//   </div>
+// );
     
   if(isLoaded) {
     return (
@@ -89,6 +108,7 @@ useEffect(() => {
                 </Card>
              </Col>
              )) } 
+          {/* {paginationBasic} */}
          </Row>
       </React.Fragment>
     ) 

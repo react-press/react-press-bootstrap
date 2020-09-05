@@ -1,0 +1,37 @@
+// Start Block Single Image
+// the single-image block has 3 variations. 
+// single-image, single-image-right, single-image-left 
+
+.single-image, 
+.single-image-right,
+.single-image-left {
+    text-transform: none;
+    padding: 1.5rem 0;
+
+    img {
+        width: 100%;
+        height: auto;
+        margin-top: 1rem;
+    }
+
+    figcaption {
+        font-size: 13px;
+        line-height: 40px;
+    }
+}
+
+.single-image {
+
+    .col-md-12 {
+        padding: 0;
+    }
+}
+
+.single-image-left {
+    display: flex;
+    flex-flow: column-reverse;
+
+    @include small-screen {
+        flex-flow: nowrap;
+    }
+}

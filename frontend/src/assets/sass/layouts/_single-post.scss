@@ -1,10 +1,49 @@
 //Single Post
 .single-post {
     text-transform: none;
-    @include large-screen {
-        padding: 0 150px 2rem 0px;
+    margin: auto;
+
+    .single-post-content {
+        max-width: 940px;
+        margin: auto;
     }
-    .featured-img {
+    .hero {
+
+        @include small-screen {
+            align-self: center;
+        }
         
+    }
+
+    h2 {
+        font-size: 40px;
+    }
+    @include large-screen {
+        // padding: 0 150px 2rem 0px;
+    }
+    .hero {
+
+        background-size: cover !important;
+        background-blend-mode: saturation;
+        background-attachment: fixed;
+        min-height: 275px;
+        width: 100% !important;
+
+        @include small-screen {
+            height: 300px;
+        }
+
+        p {
+            color: #fff;
+        }
+    
+        h1 {
+            font-size: 56px;
+            color: #fff;
+    
+            @include small-screen {
+                font-size: 64px;
+            }
+        }
     }
 }

@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router,Switch,Route, Redirect} from "react-router-dom";
+import { BrowserRouter as Router,Switch,Route } from "react-router-dom";
 import { Container, Navbar, Nav } from 'react-bootstrap';
 import Blog from '../layouts/Blog/Blog';
 import Post from '../layouts/Blog/Post';

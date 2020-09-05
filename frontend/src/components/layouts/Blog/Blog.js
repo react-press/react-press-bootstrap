@@ -88,8 +88,10 @@ useEffect(() => {
   if(isLoaded) {
     return (
       <React.Fragment>
+        <Container>
         <h1>{archiveTitle}</h1>
         <Row>
+          
           
           { posts.map(post => (
                   
@@ -108,8 +110,9 @@ useEffect(() => {
                 </Card>
              </Col>
              )) } 
-          {/* {paginationBasic} */}
+          {/* {paginationBasic} */}          
          </Row>
+         </Container>
       </React.Fragment>
     ) 
   } return <h3>Loading...</h3>

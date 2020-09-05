@@ -13,6 +13,7 @@ const Post = (props) => {
     const [postID, setPostID] = React.useState([]);
     const [date, setDate] = React.useState([]);
     const [title, setTitle] = React.useState([]);
+    const [excerpt, setExcerpt] = React.useState([]);
     const [featuredMedia, setImgID] = React.useState([]);
     const [source_url, setSourceUrl] = React.useState([]);
     const [content, setContent] = React.useState([]);
@@ -59,6 +60,7 @@ const Post = (props) => {
             setSourceUrl(featured_image.data.source_url);
             setDate(post.date);
             setTitle(post.title.rendered);
+            setExcerpt(post.excerpt.rendered);
             console.log(post)
           }) 
       }
@@ -74,7 +76,7 @@ if(isLoaded && isMounted){
         style={{backgroundImage: ` linear-gradient(black, black), url(${source_url})`}}>
         <Col md={6}>
         <h1>{title}</h1>
-        <p>The single image block has three variations. single image left, single image right, and single image fluid. The single image can have a caption, and the suggested size is __. The stylesheet is located</p>
+        <p dangerouslySetInnerHTML={{__html: excerpt}}></p>
         </Col>
       </Row>
       </Container>        

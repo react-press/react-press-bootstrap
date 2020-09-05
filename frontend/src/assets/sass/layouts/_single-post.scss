@@ -3,6 +3,10 @@
     text-transform: none;
     margin: auto;
 
+    .col-md-6 {
+        align-self: center;
+    }
+
     .single-post-content {
         max-width: 940px;
         margin: auto;
@@ -22,12 +26,11 @@
         // padding: 0 150px 2rem 0px;
     }
     .hero {
-
+        padding: 0;
         background-size: cover !important;
         background-blend-mode: saturation;
         background-attachment: fixed;
         min-height: 275px;
-        width: 100% !important;
 
         @include small-screen {
             height: 300px;

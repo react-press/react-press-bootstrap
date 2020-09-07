@@ -2,17 +2,17 @@ import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import { Row, Container, Col, Nav, Card, Button, Pagination } from 'react-bootstrap';
+import PostItem from './PostItem';
 
 
-const Blog = (props) => {
+const PostArchive = (props) => {
 
   const [categories, setCategories] = React.useState(false);
   const [archiveTitle, setArchiveTitle] = React.useState('Blog');
   const [posts, setPosts] = React.useState([]);
-  const [featuredImage, setFeaturedImage] = React.useState([]);
   const [isLoaded, setIsLoaded] = React.useState(false);
-  const [slug, setSlug] = React.useState(`${props.location.pathname}`)
-  const [catID, setCat] = React.useState(1)
+  const [slug, setSlug] = React.useState(`${props.location.pathname}`);
+  const [catID, setCat] = React.useState(1);
 
   useEffect(() => {
     //GETs categories maps the data
@@ -49,19 +49,23 @@ useEffect(() => {
       //&per_page=5&offset=2
 
       .then(res =>{
-        console.log(res);
-        res.data.map(post => {
+        // console.log(res);
+        setPosts(res.data);
+        setIsLoaded(true);
+        // res.data.map(post => {
 
-          const featured_media = post.featured_media;
-          const getImageUrl = axios.get(`https://admin.react-press.net/wp-json/wp/v2/media/${featured_media}`)
+        //   const featured_media = post.featured_media;
+        //   const getImageUrl = axios.get(`https://admin.react-press.net/wp-json/wp/v2/media/${featured_media}`)
 
-            .then((image) => {
-              setPosts(res.data);
-              setFeaturedImage(image.data.source_url)
-              setIsLoaded(true);
+        //     .then((image) => {
               
-            })
-        })
+        //       // console.log(image);
+              
+        //       setFeaturedImage([image.data.source_url])
+              
+              
+        //     })
+        // })
 
       })
     }
@@ -94,21 +98,12 @@ useEffect(() => {
           
           
           { posts.map(post => (
-                  
-            <Col lg={4} key={post.id} className="cared-sidebar">
-                <Card className="w-100">
-                <Link to={`/${post.slug}`}><Card.Img variant="top" src={featuredImage}/></Link>
-                    <Card.Body>
-                      <Card.Title>{post.title.rendered}</Card.Title>
-                      <Card.Text dangerouslySetInnerHTML={{__html: post.excerpt.rendered}}>
-                      </Card.Text>
-                          <h6>{ 'Posted by andrew' }</h6>
-                      <Button variant="primary">
-                          <Link to={`/${post.slug}`}>Read More</Link>
-                      </Button>
-                    </Card.Body>
-                </Card>
-             </Col>
+          
+              <PostItem
+                key={post.id}
+                post={post}
+              />
+
              )) } 
           {/* {paginationBasic} */}          
          </Row>
@@ -118,4 +113,4 @@ useEffect(() => {
   } return <h3>Loading...</h3>
 }
 
-export default Blog;
+export default PostArchive;

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import Posts from './Posts';
 import Pagination from '../../main/Pagination';
@@ -6,14 +6,14 @@ import Pagination from '../../main/Pagination';
 
 const PostArchive = (props) => {
 
-  const [categories, setCategories] = React.useState(false);
-  const [archiveTitle, setArchiveTitle] = React.useState('Blog');
-  const [posts, setPosts] = React.useState([]);
-  const [isLoaded, setIsLoaded] = React.useState(false);
-  const [slug] = React.useState(`${props.location.pathname}`);
-  const [catID, setCat] = React.useState(1);
-  const [currentPage, setCurrentPage] = React.useState(1);
-  const [postsPerPage] = React.useState(3);
+  const [categories, setCategories] = useState(false);
+  const [archiveTitle, setArchiveTitle] = useState('Blog');
+  const [posts, setPosts] = useState([]);
+  const [isLoaded, setIsLoaded] = useState(false);
+  const [slug] = useState(`${props.location.pathname}`);
+  const [catID, setCat] = useState(1);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [postsPerPage] = useState(3);
 
   useEffect(() => {
     //GETs categories maps the data

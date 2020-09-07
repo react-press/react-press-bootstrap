@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
-import { Row, Container, Col, Nav, Card, Button, Pagination } from 'react-bootstrap';
+import { Card, Button } from 'react-bootstrap';
 
 
 
@@ -20,7 +20,7 @@ const PostItem = ({ posts, loading, post }) => {
         Promise.all([getImageUrl, getAuthor]).then(res => {
             setImg(res[0].data.source_url)
     })
-    } , []);
+    } , [post]);
     
 
   if (loading) {

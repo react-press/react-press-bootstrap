@@ -1,9 +1,7 @@
 
-import React, {useEffect} from 'react';
-import axios from 'axios';
-import { Link } from 'react-router-dom';
+import React from 'react';
 import PostItem from './PostItem';
-import { Row, Container, Col, Nav, Card, Button, Pagination } from 'react-bootstrap';
+import { Col } from 'react-bootstrap';
 
 const Posts = ({ posts, loading }) => {
     

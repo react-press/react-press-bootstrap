@@ -10,7 +10,6 @@ const Post = (props) => {
     const [isMounted, setIsMounted] = React.useState(false);
     const [isLoaded, setIsLoaded] = React.useState(false);
     const [slug] = React.useState(`${props.location.pathname}`);
-    const [postID, setPostID] = React.useState([]);
     const [date, setDate] = React.useState([]);
     const [title, setTitle] = React.useState([]);
     const [excerpt, setExcerpt] = React.useState([]);
@@ -34,7 +33,6 @@ const Post = (props) => {
                   if(slug === '/' + idx){
                     
                     setPost(post);
-                    setPostID(post.id);
                     setContent(post.content);
                     setImgID(post.featured_media);
                     setIsMounted(true);
@@ -48,13 +46,13 @@ const Post = (props) => {
             })
           }
           getPosts();
-        }, [])
+        }, [slug])
 
     //set the endpoints needed for single post in state
     useEffect(() => {
         if (isMounted) {    
 
-          const getImageUrl = axios.get(`https://admin.react-press.net/wp-json/wp/v2/media/${featuredMedia}`)
+          axios.get(`https://admin.react-press.net/wp-json/wp/v2/media/${featuredMedia}`)
           
             .then((featured_image) => {
               setSourceUrl(featured_image.data.source_url);
@@ -65,7 +63,7 @@ const Post = (props) => {
             }) 
         }
 
-  }, [isMounted])
+  }, [isMounted, featuredMedia, post])
 
 if(isLoaded && isMounted){
     return (
@@ -77,12 +75,13 @@ if(isLoaded && isMounted){
         <Col md={6}>
         <h1>{title}</h1>
         <p dangerouslySetInnerHTML={{__html: excerpt}}></p>
+        <p>{date}</p>
         </Col>
       </Row>
       </Container>        
     <Container>
         <Row className="single-post-content">
-          <div dangerouslySetInnerHTML={{__html: post.content.rendered}}></div>
+          <div dangerouslySetInnerHTML={{__html: content.rendered}}></div>
         </Row>
     </Container>  
     </div>

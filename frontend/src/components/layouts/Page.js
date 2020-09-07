@@ -1,16 +1,15 @@
 import React, { useEffect} from 'react';
-import NoMatch from '../NoMatch';
+import NoMatch from './NoMatch';
 import axios from 'axios';
 import { Row, Container, Col } from 'react-bootstrap';
 
 
-const Post = (props) => {
+const Page = (props) => {
 
-    const [postType, setPostType] = React.useState([]);
     const [post, setPost] = React.useState([]);
     const [isMounted, setIsMounted] = React.useState(false);
     const [isLoaded, setIsLoaded] = React.useState(false);
-    const [slug] = React.useState(`${props.location.pathname}`);
+    const [pageSlug] = React.useState(`${props.location.pathname}`);
     const [date, setDate] = React.useState([]);
     const [title, setTitle] = React.useState([]);
     const [excerpt, setExcerpt] = React.useState([]);
@@ -18,26 +17,24 @@ const Post = (props) => {
     const [source_url, setSourceUrl] = React.useState([]);
     const [content, setContent] = React.useState([]);
 
-    const customPost = 'post';
-
     //inital request to GET posts
     useEffect(() => {
-        const getPosts = () => {
+        const getPages = () => {
     
-            axios.get(`https://admin.react-press.net/wp-json/wp/v2/posts/`)
+            axios.get(`https://admin.react-press.net/wp-json/wp/v2/pages/`)
         
             .then((resp) => {
               
               setIsLoaded(true);
+              console.log(resp.data);
                 resp.data.map(post => {
                   
                   let idx = post.slug;
         
-                  if(slug === '/posts/' + idx){
+                  if(pageSlug === '/' + idx){
                     
                     setPost(post);
                     setContent(post.content);
-                    setPostType(post.type);
                     setImgID(post.featured_media);
                     setIsMounted(true);
 
@@ -49,8 +46,8 @@ const Post = (props) => {
               console.log(err)
             })
           }
-          getPosts();
-        }, [slug])
+          getPages();
+        }, [pageSlug])
 
     //set the endpoints needed for single post in state
     useEffect(() => {
@@ -91,14 +88,14 @@ if(isLoaded && isMounted){
     </div>
     </React.Fragment>  
     )
-    } else if(!isMounted && isLoaded){
+    }  else if(!isMounted && isLoaded){
       
       return <NoMatch/>
-
-    } else {
+    }
+    else {
       return <h3>Loading ...</h3>
     } 
     
 }
 
-export default Post;
+export default Page;

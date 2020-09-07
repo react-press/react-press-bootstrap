@@ -1,8 +1,9 @@
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
-import { Row, Container, Col, Nav, Card, Button, Pagination } from 'react-bootstrap';
-import PostItem from './PostItem';
+import { Row, Container, Col, Nav, Card, Button } from 'react-bootstrap';
+import Posts from './Posts';
+import Pagination from '../../main/Pagination';
 
 
 const PostArchive = (props) => {
@@ -13,6 +14,8 @@ const PostArchive = (props) => {
   const [isLoaded, setIsLoaded] = React.useState(false);
   const [slug, setSlug] = React.useState(`${props.location.pathname}`);
   const [catID, setCat] = React.useState(1);
+  const [currentPage, setCurrentPage] = React.useState(1);
+  const [postsPerPage] = React.useState(3);
 
   useEffect(() => {
     //GETs categories maps the data
@@ -71,6 +74,17 @@ useEffect(() => {
     }
 }, [categories]);
 
+  // Get current posts
+  const indexOfLastPost = currentPage * postsPerPage;
+  const indexOfFirstPost = indexOfLastPost - postsPerPage;
+  const currentPosts = posts.slice(indexOfFirstPost, indexOfLastPost);
+
+  // console.log(postsPerPage);
+
+
+// Change page
+const paginate = pageNumber => setCurrentPage(pageNumber);
+
 // let active = 2;
 // let item = [];
 
@@ -92,22 +106,15 @@ useEffect(() => {
   if(isLoaded) {
     return (
       <React.Fragment>
-        <Container>
-        <h1>{archiveTitle}</h1>
-        <Row>
-          
-          
-          { posts.map(post => (
-          
-              <PostItem
-                key={post.id}
-                post={post}
-              />
-
-             )) } 
-          {/* {paginationBasic} */}          
-         </Row>
-         </Container>
+        <div className='container mt-5'>
+          <h1 className='text-primary mb-3'>My Blog</h1>
+          <Posts posts={currentPosts} loading={isLoaded} />
+          <Pagination
+            postsPerPage={postsPerPage}
+            totalPosts={posts.length}
+            paginate={paginate}
+          />
+        </div>
       </React.Fragment>
     ) 
   } return <h3>Loading...</h3>

@@ -2,18 +2,17 @@ import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import { Row, Container, Col, Nav, Card, Button, Pagination } from 'react-bootstrap';
-import PostLoop from './PostLoop';
+import PostItem from './PostItem';
 
 
-const Blog = (props) => {
+const PostArchive = (props) => {
 
   const [categories, setCategories] = React.useState(false);
   const [archiveTitle, setArchiveTitle] = React.useState('Blog');
   const [posts, setPosts] = React.useState([]);
-  const [featuredImage, setFeaturedImage] = React.useState([]);
   const [isLoaded, setIsLoaded] = React.useState(false);
-  const [slug, setSlug] = React.useState(`${props.location.pathname}`)
-  const [catID, setCat] = React.useState(1)
+  const [slug, setSlug] = React.useState(`${props.location.pathname}`);
+  const [catID, setCat] = React.useState(1);
 
   useEffect(() => {
     //GETs categories maps the data
@@ -51,20 +50,22 @@ useEffect(() => {
 
       .then(res =>{
         // console.log(res);
-        res.data.map(post => {
+        setPosts(res.data);
+        setIsLoaded(true);
+        // res.data.map(post => {
 
-          const featured_media = post.featured_media;
-          const getImageUrl = axios.get(`https://admin.react-press.net/wp-json/wp/v2/media/${featured_media}`)
+        //   const featured_media = post.featured_media;
+        //   const getImageUrl = axios.get(`https://admin.react-press.net/wp-json/wp/v2/media/${featured_media}`)
 
-            .then((image) => {
+        //     .then((image) => {
               
-              console.log(image);
-              setPosts(res.data);
-              setFeaturedImage([image.data.source_url])
-              setIsLoaded(true);
+        //       // console.log(image);
               
-            })
-        })
+        //       setFeaturedImage([image.data.source_url])
+              
+              
+        //     })
+        // })
 
       })
     }
@@ -98,13 +99,9 @@ useEffect(() => {
           
           { posts.map(post => (
           
-              <PostLoop 
+              <PostItem
                 key={post.id}
-                slug={slug}
-                title={post.title.rendered}
-                excerpt={post.excerpt.rendered}
-                featuredImage={featuredImage}
-
+                post={post}
               />
 
              )) } 
@@ -116,4 +113,4 @@ useEffect(() => {
   } return <h3>Loading...</h3>
 }
 
-export default Blog;
+export default PostArchive;

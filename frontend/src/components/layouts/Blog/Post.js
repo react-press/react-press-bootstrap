@@ -50,22 +50,22 @@ const Post = (props) => {
           getPosts();
         }, [])
 
-  //set the endpoints needed for single post in state
-  useEffect(() => {
-      if (isMounted) {    
+    //set the endpoints needed for single post in state
+    useEffect(() => {
+        if (isMounted) {    
 
-        const getImageUrl = axios.get(`https://admin.react-press.net/wp-json/wp/v2/media/${featuredMedia}`)
-        
-          .then((featured_image) => {
-            setSourceUrl(featured_image.data.source_url);
-            setDate(post.date);
-            setTitle(post.title.rendered);
-            setExcerpt(post.excerpt.rendered);
-            console.log(post)
-          }) 
-      }
+          const getImageUrl = axios.get(`https://admin.react-press.net/wp-json/wp/v2/media/${featuredMedia}`)
+          
+            .then((featured_image) => {
+              setSourceUrl(featured_image.data.source_url);
+              setDate(post.date);
+              setTitle(post.title.rendered);
+              setExcerpt(post.excerpt.rendered);
+              console.log(post)
+            }) 
+        }
 
-}, [isMounted])
+  }, [isMounted])
 
 if(isLoaded && isMounted){
     return (

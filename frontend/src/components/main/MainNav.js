@@ -1,14 +1,14 @@
 import React from 'react';
 import { BrowserRouter as Router,Switch,Route } from "react-router-dom";
 import { Container, Navbar, Nav } from 'react-bootstrap';
+import WordpressProvider from './WordpressProvider';
 import PostArchive from '../layouts/Blog/PostArchive';
 import Post from '../layouts/Blog/Post';
 import Page from '../layouts/Page';
 import NoMatch from '../layouts/NoMatch';
 
-class MainNav extends React.Component {
+const MainNav = () => {
 
-    render(){
       return (
             <React.Fragment>
             <Navbar className="rp-nav" expand="lg" variant="light" bg="light">
@@ -24,9 +24,11 @@ class MainNav extends React.Component {
             </Navbar>
             <Router>
               <Switch>
+                <WordpressProvider>
                 <Route exact path="/" component={PostArchive}/>
                 <Route exact path="/blog" component={PostArchive}/>
                 <Route exact path="/category/:slug" component={PostArchive}/>
+                </WordpressProvider>
                 <Route exact path="/posts/:slug/" component={Post}/>
                 <Route exact path="/:slug/" component={Page}/>
                 <Route exact path="/404" component={NoMatch} />
@@ -34,7 +36,6 @@ class MainNav extends React.Component {
         </Router>
             </React.Fragment>
           )
-       }
 }
 
 export default MainNav;

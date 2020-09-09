@@ -3,7 +3,8 @@ import axios from 'axios';
 
 export const UserContext = createContext();
 
-const WordpressProvider = ({props, children}) => {
+export const UserProvider = ({props, children}) => {
+
     const [categories, setCategories] = useState(false);
     const [archiveTitle, setArchiveTitle] = useState('Blog');
     const [posts, setPosts] = useState([]);
@@ -20,7 +21,7 @@ const WordpressProvider = ({props, children}) => {
           axios.get(`https://admin.react-press.net/wp-json/wp/v2/categories/`)
       
           .then((res) => {
-              console.log(res);
+              // console.log(res);
               res.data.map(category => {
       
                 let idx = category.slug;
@@ -51,24 +52,23 @@ const WordpressProvider = ({props, children}) => {
             .then(res =>{ 
               setPosts(res.data);
               setloading(true);
-              console.log(res.data)
+              // console.log(res.data)
             })
           }
       }, [categories, catID]);
 
     
     return (
-      <React.Fragment>
-              <UserContext.Provider
-                value={{
-                    posts
-                }}
-                >
-              {children}
-        </UserContext.Provider>
-      </React.Fragment>
+            <UserContext.Provider
+              value={{
+                posts,
+                loading,
+                slug,
+                archiveTitle
+              }}
+                  >
+                {children}
+            </UserContext.Provider>
     ) 
 
 }
-
-export default WordpressProvider;

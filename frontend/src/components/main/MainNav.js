@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router,Switch,Route } from "react-router-dom";
 import { Container, Navbar, Nav } from 'react-bootstrap';
-import WordpressProvider from './WordpressProvider';
+import { UserProvider } from './WordpressProvider';
 import PostArchive from '../layouts/Blog/PostArchive';
 import Post from '../layouts/Blog/Post';
 import Page from '../layouts/Page';
@@ -24,11 +24,11 @@ const MainNav = () => {
             </Navbar>
             <Router>
               <Switch>
-                <WordpressProvider>
-                <Route exact path="/" component={PostArchive}/>
-                <Route exact path="/blog" component={PostArchive}/>
-                <Route exact path="/category/:slug" component={PostArchive}/>
-                </WordpressProvider>
+                <UserProvider>
+                  <Route exact path="/" component={PostArchive}/>
+                  <Route exact path="/blog" component={PostArchive}/>
+                  <Route exact path="/category/:slug" component={PostArchive}/>
+                </UserProvider>
                 <Route exact path="/posts/:slug/" component={Post}/>
                 <Route exact path="/:slug/" component={Page}/>
                 <Route exact path="/404" component={NoMatch} />

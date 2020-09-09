@@ -107,7 +107,7 @@ if(isLoaded && isMounted){
               <div className="content-single" dangerouslySetInnerHTML={{__html: content.rendered}}></div>
             </Row>
             {/* <p>{date}</p> */}
-            <h2>Related Posts</h2>
+            <h2 className="ml-3">Related Posts</h2>
             <Posts
               loading={isLoaded}
               posts={currentPosts}

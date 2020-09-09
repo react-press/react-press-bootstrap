@@ -23,6 +23,11 @@
 
     .col-md-6 {
         align-self: top;
+        padding-right: 0;
+        padding-left: 0;
+        @include small-screen {
+            padding: 0 15px
+        }
     }
 }
 

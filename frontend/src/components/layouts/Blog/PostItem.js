@@ -10,7 +10,6 @@ const PostItem = ({ posts, loading, post }) => {
     const [Img, setImg] = React.useState([]);
 
     useEffect(() => {
-        console.log(post);
 
         const author = post.author;
         const featured_media = post.featured_media;
@@ -29,19 +28,22 @@ const PostItem = ({ posts, loading, post }) => {
   
 
   return (
-            <Card className="w-100">
-                <Link to={`/posts/${post.slug}`}><Card.Img variant="top" src={Img} /></Link>
-                    <Card.Body>
+            <Card className=" post-item mb-3 w-100">
+                <Link to={`/posts/${post.slug}`}>
+                <Card.Img variant="top" src={Img} />
+                </Link>
+                <Card.Body>
                     <Card.Title>{post.title.rendered}</Card.Title>
                     <Card.Text dangerouslySetInnerHTML={{__html: post.excerpt.rendered}}>
+                        {/* OutPut */}
                     </Card.Text>
-                        <h6>{ 'Posted by andrew' }</h6>
+                    <h6>{ 'Posted by andrew' }</h6>
                     <Button variant="primary">
                         <Link to={`/posts/${post.slug}`}>Read More</Link>
                     </Button>
-                    </Card.Body>
-                </Card>
-  );
+                </Card.Body>
+            </Card>
+        );
 };
 
 export default PostItem;

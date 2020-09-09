@@ -1,7 +1,7 @@
 
 import React from 'react';
 import PostItem from './PostItem';
-import { Col } from 'react-bootstrap';
+import { Row, Col } from 'react-bootstrap';
 
 const Posts = ({ posts, loading }) => {
     
@@ -13,6 +13,7 @@ const Posts = ({ posts, loading }) => {
 
   return (
       <React.Fragment>
+        <Row>
             {posts.map(post => (
 
                 <Col key ={post.id} lg={4} className="cared-sidebar">
@@ -21,6 +22,7 @@ const Posts = ({ posts, loading }) => {
                     />
             </Col>
             ))}
+          </Row>
         </React.Fragment>
   );
 };

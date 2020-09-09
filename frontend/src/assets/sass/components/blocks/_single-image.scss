@@ -6,17 +6,23 @@
 .single-image-right,
 .single-image-left {
     text-transform: none;
-    padding: 1.5rem 0;
+    
+    @include small-screen {
+        padding: 3rem 0;
+    }
 
     img {
         width: 100%;
         height: auto;
-        margin-top: 1rem;
     }
 
     figcaption {
         font-size: 13px;
         line-height: 40px;
+    }
+
+    .col-md-6 {
+        align-self: top;
     }
 }
 
@@ -30,8 +36,13 @@
 .single-image-left {
     display: flex;
     flex-flow: column-reverse;
+    padding-right: 2rem;
 
     @include small-screen {
         flex-flow: nowrap;
+
+        img {
+            padding-right: 2rem;
+        }
     }
 }

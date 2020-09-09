@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import Posts from './Posts';
 import Pagination from '../../main/Pagination';
+import { Row, Container, Col } from 'react-bootstrap';
+import Hero from '../../main/Hero';
 
 
 const PostArchive = ({ posts, isLoaded}) => {
@@ -14,9 +16,9 @@ const PostArchive = ({ posts, isLoaded}) => {
 
 
   // Get current posts
-  // const indexOfLastPost = currentPage * postsPerPage;
-  // const indexOfFirstPost = indexOfLastPost - postsPerPage;
-  // const currentPosts = posts.slice(indexOfFirstPost, indexOfLastPost);
+  const indexOfLastPost = currentPage * postsPerPage;
+  const indexOfFirstPost = indexOfLastPost - postsPerPage;
+  const currentPosts = posts.slice(indexOfFirstPost, indexOfLastPost);
 
 
 // Change page
@@ -27,15 +29,17 @@ console.log(posts);
   if(isLoaded) {
     return (
       <React.Fragment>
-        <div className='container mt-5'>
-          <h1 className='text-primary mb-3'>{archiveTitle}</h1>
-          <Posts posts={posts} loading={isLoaded} />
-          {/* <Pagination
+        <Container className="archive">
+          <Hero
+          pageTitle={archiveTitle}
+          />
+          <Posts posts={currentPosts} loading={isLoaded} />
+        <Pagination
             postsPerPage={postsPerPage}
             totalPosts={posts.length}
             paginate={paginate}
-          /> */}
-        </div>
+          />
+          </Container>
       </React.Fragment>
     ) 
   } return <h3>Loading...</h3>

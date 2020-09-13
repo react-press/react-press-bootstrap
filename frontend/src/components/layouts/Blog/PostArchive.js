@@ -1,16 +1,13 @@
-import React, { useEffect, useState, useContext } from 'react';
+import React, { useEffect, useContext } from 'react';
 import { UserContext} from '../../main/WordpressProvider';
-import axios from 'axios';
-import Posts from './Posts';
-import Pagination from '../../main/Pagination';
-import { Row, Container, Col } from 'react-bootstrap';
+import { Container } from 'react-bootstrap';
 import Hero from '../../main/Hero';
 
 
 const PostArchive = () => {
   const post = useContext(UserContext);
-  const [currentPage, setCurrentPage] = useState(1);
-  const [postsPerPage] = useState(3);
+  // const [currentPage, setCurrentPage] = useState(1);
+  // const [postsPerPage] = useState(3);
 
 
   // Get current posts
@@ -49,7 +46,7 @@ console.log(post.posts)
       </React.Fragment>
     ) 
   // } 
-  return <h3>Loading...</h3>
+  // return <h3>Loading...</h3>
 }
 
 export default PostArchive;

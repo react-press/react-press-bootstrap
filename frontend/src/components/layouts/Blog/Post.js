@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import NoMatch from '../NoMatch';
 import axios from 'axios';
-import { Row, Container, Col } from 'react-bootstrap';
+import { Row, Container } from 'react-bootstrap';
 import Hero from '../../main/Hero';
 import Posts from '../Blog/Posts';
 import Pagination from '../../main/Pagination';
@@ -16,7 +16,7 @@ const Post = (props) => {
     const [isLoaded, setIsLoaded] = useState(false);
     const [ID, setID] = useState([]);
     const [slug] = useState(`${props.location.pathname}`);
-    const [date, setDate] = useState([]);
+    // const [date, setDate] = useState([]);
     const [title, setTitle] = useState([]);
     const [excerpt, setExcerpt] = useState([]);
     const [featuredMedia, setImgID] = useState([]);
@@ -25,7 +25,7 @@ const Post = (props) => {
     const [currentPage, setCurrentPage] = useState(1);
     const [postsPerPage] = useState(3);
 
-    const customPost = 'post';
+    // const customPost = 'post';
 
     //inital request to GET posts
     useEffect(() => {
@@ -71,7 +71,7 @@ const Post = (props) => {
           
             .then((featured_image) => {
               setSourceUrl(featured_image.data.source_url);
-              setDate(post.date);
+              // setDate(post.date);
               setTitle(post.title.rendered);
               setExcerpt(post.excerpt.rendered);
               // console.log(post)

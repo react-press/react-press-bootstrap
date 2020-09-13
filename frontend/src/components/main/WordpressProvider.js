@@ -11,8 +11,8 @@ export const UserProvider = ({props, children}) => {
     const [loading, setloading] = useState(false);
     const [slug] = useState(`/`);
     const [catID, setCat] = useState(1);
-    const [currentPage, setCurrentPage] = useState(1);
-    const [postsPerPage] = useState(3);
+    // const [currentPage, setCurrentPage] = useState(1);
+    // const [postsPerPage] = useState(3);
 
     useEffect(() => {
         //GETs categories maps the data
@@ -42,7 +42,7 @@ export const UserProvider = ({props, children}) => {
           })
         }
       getCategories();
-    }, [])
+    }, [catID, slug])
 
     useEffect(() => {
         if (categories) {

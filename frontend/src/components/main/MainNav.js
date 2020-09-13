@@ -1,14 +1,13 @@
 import React from 'react';
 import { BrowserRouter as Router,Switch,Route } from "react-router-dom";
+import { ReactPressProvider } from '../../ReactPressProvider';
 import { Container, Navbar, Nav } from 'react-bootstrap';
 import PostArchive from '../layouts/Blog/PostArchive';
-import Post from '../layouts/Blog/Post';
-import Page from '../layouts/Page';
-import NoMatch from '../layouts/NoMatch';
+import Single from '../layouts/Single';
+// import NoMatch from '../layouts/NoMatch';
 
-class MainNav extends React.Component {
+const MainNav = () => {
 
-    render(){
       return (
             <React.Fragment>
             <Navbar className="rp-nav" expand="lg" variant="light" bg="light">
@@ -24,17 +23,15 @@ class MainNav extends React.Component {
             </Navbar>
             <Router>
               <Switch>
-                <Route exact path="/" component={PostArchive}/>
-                <Route exact path="/blog" component={PostArchive}/>
-                <Route exact path="/category/:slug" component={PostArchive}/>
-                <Route exact path="/posts/:slug/" component={Post}/>
-                <Route exact path="/:slug/" component={Page}/>
-                <Route exact path="/404" component={NoMatch} />
+                <ReactPressProvider>  
+                <Route exact path="/category/:slug" component={PostArchive}/>    
+                  <Route exact path="/:slug" component={Single}/>    
+                  {/* <Route  component={NoMatch}/>    */}
+                </ReactPressProvider>
           </Switch>
         </Router>
             </React.Fragment>
           )
-       }
 }
 
 export default MainNav;

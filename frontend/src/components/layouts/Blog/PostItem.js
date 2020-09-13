@@ -29,17 +29,16 @@ const PostItem = ({ posts, loading, post }) => {
 
   return (
             <Card className=" post-item mb-3 w-100">
-                <Link to={`/posts/${post.slug}`}>
+                <Link to={`/${post.slug}`}>
                 <Card.Img variant="top" src={Img} />
                 </Link>
                 <Card.Body>
                     <Card.Title>{post.title.rendered}</Card.Title>
                     <Card.Text dangerouslySetInnerHTML={{__html: post.excerpt.rendered}}>
-                        {/* OutPut */}
                     </Card.Text>
                     <h6>{ 'Posted by andrew' }</h6>
                     <Button variant="primary">
-                        <Link to={`/posts/${post.slug}`}>Read More</Link>
+                        <Link to={`/${post.slug}`}>Read More</Link>
                     </Button>
                 </Card.Body>
             </Card>

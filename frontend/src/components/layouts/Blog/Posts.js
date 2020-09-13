@@ -3,10 +3,10 @@ import React from 'react';
 import PostItem from './PostItem';
 import { Row, Col } from 'react-bootstrap';
 
-const Posts = ({ posts, loading }) => {
+const Posts = ({ posts, isLoaded }) => {
     
 
-  if (!loading) {
+  if (!isLoaded) {
     return <h2>Loading...</h2>;
   }
   

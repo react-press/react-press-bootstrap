@@ -1,16 +1,13 @@
 import React, { useEffect, useContext, useState } from 'react';
-import ReactDOM from 'react-dom';
 import { ReactPressContext } from '../../ReactPressProvider';
-import NoMatch from './NoMatch';
+// import NoMatch from './NoMatch';
 import axios from 'axios';
-import { Row, Container, Col } from 'react-bootstrap';
 import Page from '../layouts/Page/Page';
 import Post from '../layouts/Blog/Post';
 
 const Single = (props) => {
   const [success, setSuccess] = useState(false);
   const context = useContext(ReactPressContext);
-  const categories = context.categories;
   const posts = context.posts;
   const [post, setPost] = useState({});
   const pages = context.pages;

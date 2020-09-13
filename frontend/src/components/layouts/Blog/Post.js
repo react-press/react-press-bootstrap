@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import { Row, Container, Col } from 'react-bootstrap';
+import React from 'react';
+import { Row, Container } from 'react-bootstrap';
 import Hero from '../../main/Hero';
 
 

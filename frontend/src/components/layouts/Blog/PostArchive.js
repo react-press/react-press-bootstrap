@@ -36,7 +36,7 @@ const PostArchive = (props) => {
     })
   }
   catMap();
-}, [])
+}, [success])
 
 useEffect(()=> {
   if(success){
@@ -72,7 +72,7 @@ const paginate = pageNumber => setCurrentPage(pageNumber);
           <Hero
             title={catTitle}
           />
-          <Posts posts={currentPosts} loading={isLoaded} />
+          <Posts posts={currentPosts} isLoaded={isLoaded} />
         <Pagination
             postsPerPage={postsPerPage}
             totalPosts={posts.length}

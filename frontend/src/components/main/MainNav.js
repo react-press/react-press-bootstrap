@@ -3,9 +3,8 @@ import { BrowserRouter as Router,Switch,Route } from "react-router-dom";
 import { ReactPressProvider } from '../../ReactPressProvider';
 import { Container, Navbar, Nav } from 'react-bootstrap';
 import PostArchive from '../layouts/Blog/PostArchive';
-import Post from '../layouts/Blog/Post';
 import Single from '../layouts/Single';
-import NoMatch from '../layouts/NoMatch';
+// import NoMatch from '../layouts/NoMatch';
 
 const MainNav = () => {
 
@@ -27,7 +26,7 @@ const MainNav = () => {
                 <ReactPressProvider>  
                 <Route exact path="/category/:slug" component={PostArchive}/>    
                   <Route exact path="/:slug" component={Single}/>    
-
+                  {/* <Route  component={NoMatch}/>    */}
                 </ReactPressProvider>
           </Switch>
         </Router>

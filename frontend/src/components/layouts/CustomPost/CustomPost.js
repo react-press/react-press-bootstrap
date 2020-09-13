@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import NoMatch from '../NoMatch';
+import NoMatch from '../../main/NoMatch';
 import axios from 'axios';
 import { Row, Container, Col } from 'react-bootstrap';
 import Hero from '../../main/Hero';

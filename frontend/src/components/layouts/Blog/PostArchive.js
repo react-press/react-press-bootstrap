@@ -1,11 +1,11 @@
 import React, { useEffect, useContext } from 'react';
-import { UserContext} from '../../main/WordpressProvider';
+import { ReactPressContext} from '../../../ReactPressProvider';
 import { Container } from 'react-bootstrap';
 import Hero from '../../main/Hero';
 
 
 const PostArchive = () => {
-  const post = useContext(UserContext);
+  // const categories = useContext(UserContext);
   // const [currentPage, setCurrentPage] = useState(1);
   // const [postsPerPage] = useState(3);
 
@@ -22,11 +22,13 @@ const PostArchive = () => {
 // Change page
 // const paginate = pageNumber => setCurrentPage(pageNumber);
 
+// console.log(categories)
+
 useEffect(() => {
   // console.log(posts);
 })
 
-console.log(post.posts)
+// console.log(post.posts)
     
   // if(loading) {
     
@@ -34,7 +36,7 @@ console.log(post.posts)
       <React.Fragment>
         <Container className="archive">
           <Hero
-          pageTitle={post.archiveTitle}
+          // pageTitle={categories.name}
           />
           {/* <Posts posts={posts} loading={loading} /> */}
         {/* <Pagination

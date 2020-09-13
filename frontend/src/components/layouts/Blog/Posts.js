@@ -16,7 +16,7 @@ const Posts = ({ posts, loading }) => {
         <Row>
             {posts.map(post => (
 
-                <Col key ={post.id} lg={4} className="cared-sidebar">
+                <Col key ={post.id} lg={4}>
                     <PostItem
                     post={post}
                     />

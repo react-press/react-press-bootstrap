@@ -1,10 +1,10 @@
 import React from 'react';
 import { BrowserRouter as Router,Switch,Route } from "react-router-dom";
+import { ReactPressProvider } from '../../ReactPressProvider';
 import { Container, Navbar, Nav } from 'react-bootstrap';
-import { UserProvider } from './WordpressProvider';
 import PostArchive from '../layouts/Blog/PostArchive';
 import Post from '../layouts/Blog/Post';
-import Page from '../layouts/Page';
+import Single from '../layouts/Single';
 import NoMatch from '../layouts/NoMatch';
 
 const MainNav = () => {
@@ -24,14 +24,9 @@ const MainNav = () => {
             </Navbar>
             <Router>
               <Switch>
-                <UserProvider>
-                  <Route exact path="/" component={PostArchive}/>
-                  <Route exact path="/blog" component={PostArchive}/>
-                  <Route exact path="/category/:slug" component={PostArchive}/>
-                </UserProvider>
-                <Route exact path="/posts/:slug/" component={Post}/>
-                <Route exact path="/:slug/" component={Page}/>
-                <Route exact path="/404" component={NoMatch} />
+                <ReactPressProvider>
+                  <Route exact path="/:slug" component={Single}/>                
+                </ReactPressProvider>
           </Switch>
         </Router>
             </React.Fragment>

@@ -24,8 +24,10 @@ const MainNav = () => {
             </Navbar>
             <Router>
               <Switch>
-                <ReactPressProvider>
-                  <Route exact path="/:slug" component={Single}/>                
+                <ReactPressProvider>  
+                <Route exact path="/category/:slug" component={PostArchive}/>    
+                  <Route exact path="/:slug" component={Single}/>    
+
                 </ReactPressProvider>
           </Switch>
         </Router>

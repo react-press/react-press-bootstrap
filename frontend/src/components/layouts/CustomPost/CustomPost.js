@@ -7,13 +7,13 @@ import Posts from '../Blog/Posts';
 import Pagination from '../../main/Pagination';
 
 
-const Page = ({page, source_url}) => {
+const CustomPost = ({post, source_url}) => {
   
 
     return (
       <React.Fragment>
           <Hero
-            title={page.title.rendered}
+            title={post.title.rendered}
             source_url={source_url}
           />
       </React.Fragment>  
@@ -21,4 +21,4 @@ const Page = ({page, source_url}) => {
     
 }
 
-export default Page;
+export default CustomPost;

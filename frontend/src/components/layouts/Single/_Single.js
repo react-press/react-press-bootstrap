@@ -9,6 +9,7 @@ import Loading from '../../main/Loading';
 const Single = (props) => {
   const [success, setSuccess] = useState(false);
   const context = useContext(ReactPressContext);
+  const api = context.api;
   const posts = context.posts;
   const [post, setPost] = useState({});
   const pages = context.pages;
@@ -82,7 +83,7 @@ const Single = (props) => {
     useEffect(()=> {
       if(success){
 
-      axios.get(`https://admin.react-press.net/wp-json/wp/v2/media/${featuredMedia}`)
+      axios.get(`${api}/wp-json/wp/v2/media/${featuredMedia}`)
           
       .then((res) => {
         setSourceUrl(res.data.source_url);
@@ -91,7 +92,7 @@ const Single = (props) => {
 
     }
 
-    }, [success, featuredMedia])
+    }, [success, featuredMedia,api])
  
   if(postType === 'page'){
     return (

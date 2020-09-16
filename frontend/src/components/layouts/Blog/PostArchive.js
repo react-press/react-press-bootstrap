@@ -18,6 +18,7 @@ const PostArchive = (props) => {
   const [posts, setPosts] = useState([]);
 
   let slug = props.location.pathname;
+  const api = context.api;
   const categories = context.categories;
 
   useEffect(() => {
@@ -43,7 +44,7 @@ const PostArchive = (props) => {
 useEffect(()=> {
   if(success){
 
-    axios.get(`https://admin.react-press.net/wp-json/wp/v2/posts?categories=${catID}`)
+    axios.get(`${api}/wp-json/wp/v2/posts?categories=${catID}`)
 
     .then(res =>{ 
       setPosts(res.data);
@@ -52,7 +53,7 @@ useEffect(()=> {
 
 }
 
-}, [success, catID])
+}, [success, catID, api])
 
 const [currentPage, setCurrentPage] = useState(1);
 const [postsPerPage] = useState(3);

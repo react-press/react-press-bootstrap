@@ -11,15 +11,16 @@ export const ReactPressProvider = ({children}) => {
     const [posts, setPosts] = useState([]);
     const [pages, setPages] = useState([]);
     const [customPosts, setCustomPosts] = useState([]);
+    const [api] = useState('https://admin.react-press.net')
     
 
     useEffect(() => {
         const getCategories = () => {
         
-          const categories = axios.get(`https://admin.react-press.net/wp-json/wp/v2/categories/`);
-          const posts = axios.get('https://admin.react-press.net/wp-json/wp/v2/posts');
-          const pages = axios.get('https://admin.react-press.net/wp-json/wp/v2/pages');
-          const customPost = axios.get('https://admin.react-press.net/wp-json/wp/v2/custom-post');
+          const categories = axios.get(`${api}/wp-json/wp/v2/categories/`);
+          const posts = axios.get(`${api}/wp-json/wp/v2/posts`);
+          const pages = axios.get(`${api}/wp-json/wp/v2/pages`);
+          const customPost = axios.get(`${api}/wp-json/wp/v2/custom-post`);
 
           Promise.all( [categories, posts, pages, customPost])
 
@@ -35,7 +36,7 @@ export const ReactPressProvider = ({children}) => {
           )
         }
       getCategories();
-    }, [])
+    }, [api])
     
     if(isLoaded){
     return (
@@ -44,7 +45,8 @@ export const ReactPressProvider = ({children}) => {
                 categories,
                 posts,
                 pages,
-                customPosts
+                customPosts,
+                api
               }}
                   >
                 {children}

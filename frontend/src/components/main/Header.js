@@ -2,8 +2,9 @@ import React from 'react';
 import { BrowserRouter as Router,Switch,Route } from "react-router-dom";
 import { ReactPressProvider } from '../../ReactPressProvider';
 import { Container, Navbar, Nav } from 'react-bootstrap';
+import FrontPage from '../layouts/FrontPage';
 import PostArchive from '../layouts/Blog/PostArchive';
-import Single from '../layouts/Single';
+import Single from '../layouts/Single/_Single';
 // import NoMatch from '../layouts/NoMatch';
 
 const MainNav = () => {
@@ -24,9 +25,9 @@ const MainNav = () => {
             <Router>
               <Switch>
                 <ReactPressProvider>  
-                <Route exact path="/category/:slug" component={PostArchive}/>    
-                  <Route exact path="/:slug" component={Single}/>    
-                  {/* <Route  component={NoMatch}/>    */}
+                  <Route exact path="/" component={FrontPage}/> 
+                  <Route exact path="/category/:slug" component={PostArchive}/>    
+                  <Route exact path="/:slug" component={Single}/>
                 </ReactPressProvider>
           </Switch>
         </Router>

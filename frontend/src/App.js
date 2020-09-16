@@ -1,5 +1,5 @@
 import React from "react";
-import MainNav from './components/main/MainNav'
+import MainNav from './components/main/Header'
 
 
 const App = () =>  (

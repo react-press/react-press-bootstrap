@@ -20,8 +20,7 @@ const PostArchive = (props) => {
   const categories = context.categories;
 
   useEffect(() => {
-
-
+    
     const catMap = () => {
       const map = categories.map((category) => {
         
@@ -36,22 +35,7 @@ const PostArchive = (props) => {
       });
       return map;
     }
-  
-  // const catMap = () => {
-  //   const map = categories.map((category) => {
-      
-  //     let idx = category.slug
-  //     console.log(category)
 
-  //     if(slug === '/category/' + idx){
-  //       setCatID(category.id);
-  //       setCatTitle(category.name);
-  //       setSuccess(true);
-  //     }
-  //   }
-  //   )
-  //   return success;
-  // }
   catMap();
 }, [success, categories, slug])
 

@@ -1,9 +1,9 @@
 import React, { useEffect, useContext, useState } from 'react';
-import { ReactPressContext } from '../../ReactPressProvider';
-// import NoMatch from './NoMatch';
+import { ReactPressContext } from '../../../ReactPressProvider';
+import NoMatch from '../../main/404';
 import axios from 'axios';
-import Page from '../layouts/Page/Page';
-import Post from '../layouts/Blog/Post';
+import Page from './Page';
+import Post from './Post';
 
 const Single = (props) => {
   const [success, setSuccess] = useState(false);
@@ -14,7 +14,7 @@ const Single = (props) => {
   const [page, setPage] = useState({});
   const customPosts = context.customPosts;
   const [customPost, setCustomPost] = useState({});
-  const [postType, setPostType] = useState('');
+  const [postType, setPostType] = useState('NoMatch');
   const [featuredMedia, setFeaturedMedia] = useState([]);
   const [source_url, setSourceUrl] = useState([]);
 
@@ -36,7 +36,7 @@ const Single = (props) => {
           setSuccess(true);
           setFeaturedMedia(page.featured_media);
         }
-        return null;
+        return page;
       })
       return map;
     } 
@@ -52,7 +52,7 @@ const Single = (props) => {
           setSuccess(true);
           setFeaturedMedia(post.featured_media);
         } 
-        return null;
+        return post;
       });
       return map;
     } 
@@ -91,9 +91,6 @@ const Single = (props) => {
     }
 
     }, [success, featuredMedia])
-  
-
-
  
   if(postType === 'page'){
     return (
@@ -120,7 +117,13 @@ const Single = (props) => {
     source_url={source_url}
     />
   </React.Fragment>  )
-  } return <h3>Loading...</h3>
+  } else if(postType === 'NoMatch'){
+    return (
+    <React.Fragment>
+      <NoMatch/>
+  </React.Fragment>  )
+  }  
+  return <h3>Loading...</h3>
     
 }
 

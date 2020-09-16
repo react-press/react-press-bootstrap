@@ -4,6 +4,7 @@ import NoMatch from '../../main/404';
 import axios from 'axios';
 import Page from './Page';
 import Post from './Post';
+import Loading from '../../main/Loading';
 
 const Single = (props) => {
   const [success, setSuccess] = useState(false);
@@ -123,7 +124,7 @@ const Single = (props) => {
       <NoMatch/>
   </React.Fragment>  )
   }  
-  return <h3>Loading...</h3>
+  return <Loading/>
     
 }
 

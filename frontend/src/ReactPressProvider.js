@@ -1,5 +1,6 @@
 import React, { useEffect, useState, createContext } from 'react';
 import axios from 'axios';
+import Loading from './components/main/Loading';
 
 export const ReactPressContext = createContext();
 
@@ -49,6 +50,6 @@ export const ReactPressProvider = ({children}) => {
                 {children}
             </ReactPressContext.Provider>
     ) 
-            } return <h3>Loading....</h3>
+            } return <Loading/>
 
 }

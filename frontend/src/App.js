@@ -1,5 +1,6 @@
 import React from "react";
-import MainNav from './components/main/Header'
+import MainNav from './components/main/Header';
+import Footer from './components/main/Footer';
 
 
 const App = () =>  (
@@ -7,9 +8,7 @@ const App = () =>  (
    
       <React.Fragment>
         <MainNav/>
-        <div className="text-center pb-3">
-          <p>Created By Andrew & Von</p>
-            </div>
+        <Footer/>
       </React.Fragment>
 )
 

@@ -5,6 +5,7 @@ import { Container } from 'react-bootstrap';
 import Hero from '../../main/Hero';
 import Posts from './Posts';
 import Pagination from '../../main/Pagination';
+import Loading from '../../main/Loading';
 
 
 const PostArchive = (props) => {
@@ -83,7 +84,7 @@ const paginate = pageNumber => setCurrentPage(pageNumber);
       </React.Fragment>
     ) 
   } 
-  return <h3>Loading...</h3>
+  return <Loading/>
 }
 
 export default PostArchive;

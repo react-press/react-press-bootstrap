@@ -4,3 +4,14 @@
 @import 'blocks/_blocks';
 @import '_pagination';
 @import 'footer';
+
+.loader {
+    height: 100vh;
+    background-color: rgba(238, 238, 238, .5);
+    
+    .spinner-border {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+    }
+}

@@ -25,6 +25,7 @@
     
         h1 {
             color: #fff;
+            line-height: initial;
         }
 
         @include small-screen {

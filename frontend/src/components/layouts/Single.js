@@ -22,12 +22,11 @@ const Single = (props) => {
 
 
   useEffect(() => {
-
     
     window.scrollTo(0,0);
 
     const pageMap = () => {
-      pages.map((page) => {
+      const map = pages.map((page) => {
         
         let idx = page.slug
 
@@ -37,12 +36,13 @@ const Single = (props) => {
           setSuccess(true);
           setFeaturedMedia(page.featured_media);
         }
-
+        return null;
       })
-    }
+      return map;
+    } 
 
     const postMap = () => {
-      posts.map((post) => {
+      const map = posts.map((post) => {
         
         let idx = post.slug
 
@@ -52,12 +52,13 @@ const Single = (props) => {
           setSuccess(true);
           setFeaturedMedia(post.featured_media);
         } 
-
+        return null;
       });
-    }
+      return map;
+    } 
 
     const customMap = () => {
-      customPosts.map((customPost) => {
+      const map = customPosts.map((customPost) => {
         
         let idx = customPost.slug
 
@@ -67,13 +68,14 @@ const Single = (props) => {
           setSuccess(true);
           setFeaturedMedia(customPost.featured_media);
         } 
-
+        return customPost;
       });
+      return map;
     }
   pageMap();
   postMap();
   customMap();
-  }, [])
+  }, [customPosts, pages, posts, slug])
 
  
     useEffect(()=> {
@@ -88,7 +90,7 @@ const Single = (props) => {
 
     }
 
-    }, [success])
+    }, [success, featuredMedia])
   
 
 

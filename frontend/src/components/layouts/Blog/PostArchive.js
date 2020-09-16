@@ -20,23 +20,40 @@ const PostArchive = (props) => {
   const categories = context.categories;
 
   useEffect(() => {
+
+
+    const catMap = () => {
+      const map = categories.map((category) => {
+        
+        let idx = category.slug
+
+        if(slug === '/category/' + idx){
+          setCatID(category.id);
+          setCatTitle(category.name);
+          setSuccess(true);
+        } 
+        return null;
+      });
+      return map;
+    }
   
-  const catMap = () => {
-    categories.map((category) => {
+  // const catMap = () => {
+  //   const map = categories.map((category) => {
       
-      let idx = category.slug
-      console.log(category)
+  //     let idx = category.slug
+  //     console.log(category)
 
-      if(slug === '/category/' + idx){
-        setCatID(category.id);
-        setCatTitle(category.name);
-        setSuccess(true);
-      }
-
-    })
-  }
+  //     if(slug === '/category/' + idx){
+  //       setCatID(category.id);
+  //       setCatTitle(category.name);
+  //       setSuccess(true);
+  //     }
+  //   }
+  //   )
+  //   return success;
+  // }
   catMap();
-}, [success])
+}, [success, categories, slug])
 
 useEffect(()=> {
   if(success){
@@ -50,7 +67,7 @@ useEffect(()=> {
 
 }
 
-}, [success])
+}, [success, catID])
 
 const [currentPage, setCurrentPage] = useState(1);
 const [postsPerPage] = useState(3);

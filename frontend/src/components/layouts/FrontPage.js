@@ -1,7 +1,7 @@
 import React, { useContext, useState, useEffect } from 'react';
 // import axios from 'axios';
 import { ReactPressContext } from '../../ReactPressProvider';
-// import Hero from '../main/Hero';
+import Hero from '../main/Hero';
 
 const FrontPage = () => {
     // const [isLoaded, setIsLoaded] = useState(false);
@@ -12,6 +12,8 @@ const FrontPage = () => {
     // const [featuredMedia, setFeaturedMedia] = useState([]);
 
     const id = 46;
+    const title = 'Front Page Title';
+    const source_url = 'http://via.placeholder.com/1980'
 
     useEffect(()=> {
 
@@ -34,9 +36,12 @@ const FrontPage = () => {
       console.log(frontPage)
     
     return (
-        <React.Fragment>
-        Front Page
-        </React.Fragment>
+          <div className="front-page">
+          <Hero
+            title={title}
+            source_url={source_url}
+          />
+          </div>
     )
 }
 

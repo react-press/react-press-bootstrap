@@ -14,8 +14,8 @@ const Single = (props) => {
   const [post, setPost] = useState({});
   const pages = context.pages;
   const [page, setPage] = useState({});
-  const customPosts = context.customPosts;
-  const [customPost, setCustomPost] = useState({});
+  // const customPosts = context.customPosts;
+  // const [customPost, setCustomPost] = useState({});
   const [postType, setPostType] = useState('NoMatch');
   const [featuredMedia, setFeaturedMedia] = useState([]);
   const [source_url, setSourceUrl] = useState([]);
@@ -59,25 +59,25 @@ const Single = (props) => {
       return map;
     } 
 
-    const customMap = () => {
-      const map = customPosts.map((customPost) => {
+    // const customMap = () => {
+    //   const map = customPosts.map((customPost) => {
         
-        let idx = customPost.slug
+    //     let idx = customPost.slug
 
-        if(slug === '/' + idx){
-          setPostType(customPost.type);
-          setCustomPost(customPost);
-          setSuccess(true);
-          setFeaturedMedia(customPost.featured_media);
-        } 
-        return customPost;
-      });
-      return map;
-    }
+    //     if(slug === '/' + idx){
+    //       setPostType(customPost.type);
+    //       setCustomPost(customPost);
+    //       setSuccess(true);
+    //       setFeaturedMedia(customPost.featured_media);
+    //     } 
+    //     return customPost;
+    //   });
+    //   return map;
+    // }
   pageMap();
   postMap();
-  customMap();
-  }, [customPosts, pages, posts, slug])
+  // customMap();
+  }, [ pages, posts, slug])
 
  
     useEffect(()=> {
@@ -111,14 +111,14 @@ const Single = (props) => {
     source_url={source_url}
     />
   </React.Fragment>  )
-  } else if(postType === 'custom-post'){
-    return (
-    <React.Fragment>
-    <Post
-    post={customPost}
-    source_url={source_url}
-    />
-  </React.Fragment>  )
+  // } else if(postType === 'custom-post'){
+  //   return (
+  //   <React.Fragment>
+  //   <Post
+  //   post={customPost}
+  //   source_url={source_url}
+  //   />
+  // </React.Fragment>  )
   } else if(postType === 'NoMatch'){
     return (
     <React.Fragment>

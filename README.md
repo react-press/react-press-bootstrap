@@ -45,7 +45,6 @@ You don’t have to ever use `eject`. The curated feature set is suitable for sm
   <li><a href="https://github.com/sass/node-sass">node-sass</a></li>
   <li><a href="https://www.npmjs.com/package/react-helmet">react-helmet</a></li>
   <li><a href="https://www.npmjs.com/package/axios">axios</a></li>
-  <li><a href="https://www.npmjs.com/package/dotenv">dotenv</a></li>
 
  </ul>
  <br/>

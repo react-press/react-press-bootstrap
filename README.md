@@ -14,6 +14,17 @@
  </ul>
  <br/>
  NOTE: <a href="https://reactjs.org/blog/2019/08/08/react-v16.9.0.html#renaming-unsafe-lifecycle-methods">react-codemod for Lifecycle Methods</a>
+
+### Folder Structure
+```
+src
+  assets
+    sass
+    static
+  components
+    layouts
+    main
+```
  
 # Sass Structure
 <ul><br/>

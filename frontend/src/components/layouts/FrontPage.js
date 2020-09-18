@@ -1,12 +1,8 @@
-import React, { useEffect, useState, useContext } from "react";
-import { ReactPressContext } from "../../ReactPressProvider";
+import React, { useEffect, useState } from "react";
 import Hero from "../main/Hero";
 import { Row, Col, Container } from "react-bootstrap";
 
 const FrontPage = () => {
-  //context
-  const context = useContext(ReactPressContext);
-  const posts = context.posts;
   //state
   const [isLoaded, setIsLoaded] = useState(false);
   //hero props

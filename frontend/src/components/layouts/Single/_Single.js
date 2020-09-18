@@ -82,7 +82,6 @@ const Single = (props) => {
 
         .then((res) => {
           setSourceUrl(res.data.source_url);
-          console.log(res);
         });
     }
   }, [success, featuredMedia, api]);

@@ -27,17 +27,14 @@ src
 ```
  
 # Sass Structure
-<ul><br/>
-  <li>src/assets/sass</li>
-    <ul>
-      <li>base</li>
-      <li>components</li>
-      <li>layouts</li>
-      <li>main.scss</li>
-    </ul>
- </ul>
+```
+base
+components
+layouts
+main.scss
+```
 
-<h3>Base Styles</h3>
+<h3>Base</h3>
 this directory is where the bootstrap overides are, the style variables, mixins, and global styles for the site
 <br/>
 <h3>Components</h3>

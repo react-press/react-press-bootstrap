@@ -25,7 +25,7 @@ src
     main
 ```
  
-# Sass Structure
+### Sass Structure
 ```
 base
 components

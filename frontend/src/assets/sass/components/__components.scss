@@ -1,17 +1,17 @@
-@import 'nav';
-@import 'hero';
-@import '_content-single';
-@import 'blocks/_blocks';
-@import '_pagination';
-@import 'footer';
+@import "nav";
+@import "hero";
+@import "_content-single";
+@import "blocks/_blocks";
+@import "_pagination";
+@import "footer";
 
 .loader {
-    height: 100vh;
-    background-color: rgba(238, 238, 238, .5);
-    
-    .spinner-border {
-        position: fixed;
-        top: 50%;
-        left: 50%;
-    }
+  height: 100vh;
+  background-color: rgba(238, 238, 238, 0.5);
+
+  .spinner-border {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+  }
 }

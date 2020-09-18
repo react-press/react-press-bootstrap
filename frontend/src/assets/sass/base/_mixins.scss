@@ -3,37 +3,37 @@
 
 // Inline media queries
 @mixin respond-min($width) {
-    @media screen and (min-width: $width) {
-        @content;
-    }
+  @media screen and (min-width: $width) {
+    @content;
+  }
 }
 
 @mixin respond-max($width) {
-    @media screen and (max-width: $width) {
-        @content;
-    }
+  @media screen and (max-width: $width) {
+    @content;
+  }
 }
 
 @mixin xsmall-screen() {
-    @media screen and (max-width: $xsmall-screen) {
-        @content;
-    }
+  @media screen and (max-width: $xsmall-screen) {
+    @content;
+  }
 }
 
 @mixin small-screen() {
-    @media screen and (min-width: $small-screen) {
-        @content;
-    }
+  @media screen and (min-width: $small-screen) {
+    @content;
+  }
 }
 
 @mixin medium-screen() {
-    @media screen and (min-width: $medium-screen) {
-        @content;
-    }
+  @media screen and (min-width: $medium-screen) {
+    @content;
+  }
 }
 
 @mixin large-screen() {
-    @media screen and (min-width: $large-screen) {
-        @content;
-    }
+  @media screen and (min-width: $large-screen) {
+    @content;
+  }
 }

@@ -1,53 +1,52 @@
 // Start Block Single Image
-// the single-image block has 3 variations. 
-// single-image, single-image-right, single-image-left 
+// the single-image block has 3 variations.
+// single-image, single-image-right, single-image-left
 
-.single-image, 
+.single-image,
 .single-image-right,
 .single-image-left {
-    text-transform: none;
-    
+  text-transform: none;
+
+  @include small-screen {
+    padding: 3rem 0;
+  }
+
+  img {
+    width: 100%;
+    height: auto;
+  }
+
+  figcaption {
+    font-size: 13px;
+    line-height: 40px;
+  }
+
+  .col-md-6 {
+    align-self: top;
+    padding-right: 0;
+    padding-left: 0;
     @include small-screen {
-        padding: 3rem 0;
+      padding: 0 15px;
     }
-
-    img {
-        width: 100%;
-        height: auto;
-    }
-
-    figcaption {
-        font-size: 13px;
-        line-height: 40px;
-    }
-
-    .col-md-6 {
-        align-self: top;
-        padding-right: 0;
-        padding-left: 0;
-        @include small-screen {
-            padding: 0 15px
-        }
-    }
+  }
 }
 
 .single-image {
-
-    .col-md-12 {
-        padding: 0;
-    }
+  .col-md-12 {
+    padding: 0;
+  }
 }
 
 .single-image-left {
-    display: flex;
-    flex-flow: column-reverse;
-    padding-right: 2rem;
+  display: flex;
+  flex-flow: column-reverse;
+  padding-right: 2rem;
 
-    @include small-screen {
-        flex-flow: nowrap;
+  @include small-screen {
+    flex-flow: nowrap;
 
-        img {
-            padding-right: 2rem;
-        }
+    img {
+      padding-right: 2rem;
     }
+  }
 }

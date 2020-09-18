@@ -1,37 +1,37 @@
 //Single Post
 .single-post,
 .front-page {
-    text-transform: none;
-    margin: auto;
+  text-transform: none;
+  margin: auto;
 
-    .hero {
-        align-items: center;
-        min-height: 275px;
-        padding: 0;
-        background-size: cover !important;
-        background-blend-mode: saturation;
-        background-attachment: fixed;
+  .hero {
+    align-items: center;
+    min-height: 275px;
+    padding: 0;
+    background-size: cover !important;
+    background-blend-mode: saturation;
+    background-attachment: fixed;
 
-        .background-overlay {
-            background-color: $black;
-            position: absolute;
-            height: 100%;
-            width: 100%;
-            opacity: 0.7;
-        }
-
-        p {
-            color: #fff;
-        }
-    
-        h1 {
-            color: #fff;
-            line-height: initial;
-        }
-
-        @include small-screen {
-            height: 400px;
-            background-position: center center;
-        }
+    .background-overlay {
+      background-color: $black;
+      position: absolute;
+      height: 100%;
+      width: 100%;
+      opacity: 0.7;
     }
+
+    p {
+      color: #fff;
+    }
+
+    h1 {
+      color: #fff;
+      line-height: initial;
+    }
+
+    @include small-screen {
+      height: 400px;
+      background-position: center center;
+    }
+  }
 }

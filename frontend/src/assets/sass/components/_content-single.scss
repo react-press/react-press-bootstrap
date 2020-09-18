@@ -1,15 +1,14 @@
 //content single
 
 .content-single {
-    margin: auto;
-    width: 100%;
-    
+  margin: auto;
+  width: 100%;
 
-    @include small-screen {
-        padding: 2rem 0;
-    }
+  @include small-screen {
+    padding: 2rem 0;
+  }
 
-    .divider {
-        margin-top: 3rem;
-    }
+  .divider {
+    margin-top: 3rem;
+  }
 }

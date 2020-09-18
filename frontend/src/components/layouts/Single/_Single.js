@@ -1,10 +1,10 @@
-import React, { useEffect, useContext, useState } from 'react';
-import { ReactPressContext } from '../../../ReactPressProvider';
-import NoMatch from '../../main/404';
-import axios from 'axios';
-import Page from './Page';
-import Post from './Post';
-import Loading from '../../main/Loading';
+import React, { useEffect, useContext, useState } from "react";
+import { ReactPressContext } from "../../../ReactPressProvider";
+import NoMatch from "../../main/404";
+import axios from "axios";
+import Page from "./Page";
+import Post from "./Post";
+import Loading from "../../main/Loading";
 
 const Single = (props) => {
   const [success, setSuccess] = useState(false);
@@ -16,52 +16,48 @@ const Single = (props) => {
   const [page, setPage] = useState({});
   // const customPosts = context.customPosts;
   // const [customPost, setCustomPost] = useState({});
-  const [postType, setPostType] = useState('NoMatch');
+  const [postType, setPostType] = useState("NoMatch");
   const [featuredMedia, setFeaturedMedia] = useState([]);
   const [source_url, setSourceUrl] = useState([]);
 
   let slug = props.location.pathname;
 
-
   useEffect(() => {
-    
-    window.scrollTo(0,0);
+    window.scrollTo(0, 0);
 
     const pageMap = () => {
       const map = pages.map((page) => {
-        
-        let idx = page.slug
+        let idx = page.slug;
 
-        if(slug === '/' + idx){
+        if (slug === "/" + idx) {
           setPostType(page.type);
           setPage(page);
           setSuccess(true);
           setFeaturedMedia(page.featured_media);
         }
         return page;
-      })
+      });
       return map;
-    } 
+    };
 
     const postMap = () => {
       const map = posts.map((post) => {
-        
-        let idx = post.slug
+        let idx = post.slug;
 
-        if(slug === '/' + idx){
+        if (slug === "/" + idx) {
           setPostType(post.type);
           setPost(post);
           setSuccess(true);
           setFeaturedMedia(post.featured_media);
-        } 
+        }
         return post;
       });
       return map;
-    } 
+    };
 
     // const customMap = () => {
     //   const map = customPosts.map((customPost) => {
-        
+
     //     let idx = customPost.slug
 
     //     if(slug === '/' + idx){
@@ -69,64 +65,56 @@ const Single = (props) => {
     //       setCustomPost(customPost);
     //       setSuccess(true);
     //       setFeaturedMedia(customPost.featured_media);
-    //     } 
+    //     }
     //     return customPost;
     //   });
     //   return map;
     // }
-  pageMap();
-  postMap();
-  // customMap();
-  }, [ pages, posts, slug])
+    pageMap();
+    postMap();
+    // customMap();
+  }, [pages, posts, slug]);
 
- 
-    useEffect(()=> {
-      if(success){
+  useEffect(() => {
+    if (success) {
+      axios
+        .get(`${api}/wp-json/wp/v2/media/${featuredMedia}`)
 
-      axios.get(`${api}/wp-json/wp/v2/media/${featuredMedia}`)
-          
-      .then((res) => {
-        setSourceUrl(res.data.source_url);
-        console.log(res);
-      }) 
-
+        .then((res) => {
+          setSourceUrl(res.data.source_url);
+          console.log(res);
+        });
     }
+  }, [success, featuredMedia, api]);
 
-    }, [success, featuredMedia,api])
- 
-  if(postType === 'page'){
+  if (postType === "page") {
     return (
-    <React.Fragment>
-      <Page
-      page={page}
-      source_url={source_url}
-      />
-    </React.Fragment>  
-    )
-  } else if(postType === 'post'){
+      <React.Fragment>
+        <Page page={page} source_url={source_url} />
+      </React.Fragment>
+    );
+  } else if (postType === "post") {
     return (
-    <React.Fragment>
-    <Post
-    post={post}
-    source_url={source_url}
-    />
-  </React.Fragment>  )
-  // } else if(postType === 'custom-post'){
-  //   return (
-  //   <React.Fragment>
-  //   <Post
-  //   post={customPost}
-  //   source_url={source_url}
-  //   />
-  // </React.Fragment>  )
-  } else if(postType === 'NoMatch'){
+      <React.Fragment>
+        <Post post={post} source_url={source_url} />
+      </React.Fragment>
+    );
+    // } else if(postType === 'custom-post'){
+    //   return (
+    //   <React.Fragment>
+    //   <Post
+    //   post={customPost}
+    //   source_url={source_url}
+    //   />
+    // </React.Fragment>  )
+  } else if (postType === "NoMatch") {
     return (
-    <React.Fragment>
-      <NoMatch/>
-  </React.Fragment>  )
-  }  
-  return <Loading/>
-    
-}
+      <React.Fragment>
+        <NoMatch />
+      </React.Fragment>
+    );
+  }
+  return <Loading />;
+};
 
 export default Single;

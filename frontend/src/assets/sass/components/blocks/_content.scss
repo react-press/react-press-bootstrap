@@ -1,24 +1,24 @@
 //content block
 
 .content-single {
-    h2 {
-        line-height: 60px;
-        margin-top: 24px;
-    }
+  h2 {
+    line-height: 60px;
+    margin-top: 24px;
+  }
 }
 
 .video-basic {
-    width: 100%;
-    padding: 1rem 0;
+  width: 100%;
+  padding: 1rem 0;
 
-    iframe {
-        margin-top: 1rem;
-        width: 100% !important;
-        height: auto !important;
-        min-height: 260px;
+  iframe {
+    margin-top: 1rem;
+    width: 100% !important;
+    height: auto !important;
+    min-height: 260px;
 
-        @include small-screen {
-            min-height: 460px;
-        }
+    @include small-screen {
+      min-height: 460px;
     }
+  }
 }

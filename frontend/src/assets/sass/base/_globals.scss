@@ -1,43 +1,43 @@
 //Global Styles
-@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;1,700');
+@import url("https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;1,700");
 
 body {
-    font-family: 'Lato';
-    text-transform: lowercase;
-    letter-spacing: 0px;
-    line-height: 1.6em;
+  font-family: "Lato";
+  text-transform: lowercase;
+  letter-spacing: 0px;
+  line-height: 1.6em;
 }
 
 h1 {
-    font-size: 40px;
-    line-height: 1.3em;
-    @include large-screen {
-        font-size: 64px;
-        line-height: 1.8em;
-    }
+  font-size: 40px;
+  line-height: 1.3em;
+  @include large-screen {
+    font-size: 64px;
+    line-height: 1.8em;
+  }
 }
 p {
-    margin: 1rem auto;
-    text-transform: none;
+  margin: 1rem auto;
+  text-transform: none;
 }
 
 span {
-    font-style: italic;
-    text-transform: none;
+  font-style: italic;
+  text-transform: none;
 }
 
 .row {
-    padding: 1rem;
+  padding: 1rem;
 }
 
 .btn {
-    color: $white;
+  color: $white;
 }
 .btn-primary a {
-    color: $white;
+  color: $white;
 }
 
 //state
 .active {
-    color: $MainLight;
+  color: $MainLight;
 }

@@ -1,14 +1,13 @@
 //Hero
 .hero {
-    position: relative;
-    padding: 0;
-    background-size: cover !important;
-    background-blend-mode: saturation;
-    background-attachment: fixed;
+  position: relative;
+  padding: 0;
+  background-size: cover !important;
+  background-blend-mode: saturation;
+  background-attachment: fixed;
 
-    .col-md-10,
-    .col-md-12 {
-        padding-left: 0;
-    }
+  .col-md-10,
+  .col-md-12 {
+    padding-left: 0;
+  }
 }
-

@@ -1,12 +1,12 @@
 //Bootstrap overides
 // change the theme
 $theme-colors: (
-  "primary":    $MainDark,
-  "secondary":  $MainLight,
-  "danger":     $error,
-  "warning":    $warning,
-  "info":       $Cta
+  "primary": $MainDark,
+  "secondary": $MainLight,
+  "danger": $error,
+  "warning": $warning,
+  "info": $Cta,
 );
 
 // Import Bootstrap and its default variables
-@import '~bootstrap/scss/bootstrap.scss';
+@import "~bootstrap/scss/bootstrap.scss";
